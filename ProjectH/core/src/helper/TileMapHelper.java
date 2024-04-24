@@ -5,6 +5,8 @@ import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.GameScreen;
@@ -14,20 +16,25 @@ public class TileMapHelper {
     private TiledMap tiledMap;
     private GameScreen GameScreen;
 
-    public TileMapHelper(GameScreen gameScreen){
+    public TileMapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
     }
 
-    private void parseMapOjects(MapObjects mapObjects){
-        for (MapObject mapObject : mapObjects){
+    public OrthogonalTiledMapRenderer setupMap() {
+        tiledMap = new TmxMapLoader().load("maps/map0.tmx");
+        return new OrthogonalTiledMapRenderer(tiledMap);
+    }
+
+    private void parseMapOjects(MapObjects mapObjects) {
+        for (MapObject mapObject : mapObjects) {
             if (mapObject instanceof PolygonMapObject) {
                 createStaticBody((PolygonMapObject) mapObject);
             }
-            if(mapObject instanceof RectangleMapObject){
+            if (mapObject instanceof RectangleMapObject) {
                 Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
                 String rectangleName = mapObject.getName();
 
-                if(rectangeName.equals("player")){
+                if (rectangeName.equals("player")) {
                     Body body = BodyHelperService.createBody(
                             rectangle.getX() + rectangle.getWidth() / 2,
                             rectangle.getY() + rectangle.getHeight() / 2,
@@ -40,5 +47,6 @@ public class TileMapHelper {
                 }
             }
         }
+
     }
 }
