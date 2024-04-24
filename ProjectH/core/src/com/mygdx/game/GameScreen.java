@@ -35,7 +35,7 @@ public class GameScreen extends ScreenAdapter {
         this.world = new World(new Vector2(0,-30f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
 
-        this.tileMapHelper = new TileMapHelper();
+        this.tileMapHelper = new TileMapHelper(this);
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();
     }
 
@@ -78,5 +78,9 @@ public class GameScreen extends ScreenAdapter {
 
     public void setPlayer(Player player){
         this.player = player;
+    }
+
+    public World getWorld() {
+        return world;
     }
 }

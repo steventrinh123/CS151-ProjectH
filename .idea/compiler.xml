@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
-      <module name="ProjectH.core" target="1.8" />
-      <module name="ProjectH.core.main" target="1.8" />
-      <module name="ProjectH.core.test" target="1.8" />
-      <module name="ProjectH.desktop" target="1.8" />
-      <module name="ProjectH.desktop.main" target="1.8" />
-      <module name="ProjectH.desktop.test" target="1.8" />
-      <module name="ProjectH.html" target="1.8" />
-      <module name="ProjectH.html.main" target="1.8" />
-      <module name="ProjectH.html.test" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8" />
   </component>
 </project>
