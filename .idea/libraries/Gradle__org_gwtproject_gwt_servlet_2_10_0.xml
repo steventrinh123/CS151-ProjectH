@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.gwtproject:gwt-servlet:2.10.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.gwtproject" artifactId="gwt-servlet" version="2.10.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gwtproject/gwt-servlet/2.10.0/80e14fbdef9f6928912f4492e0179e74ca06ec8e/gwt-servlet-2.10.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
