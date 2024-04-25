@@ -1,0 +1,47 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" external-system-id="GRADLE" name="Gradle : ProjectH : html-1.0.war (exploded)">
+    <output-path>$PROJECT_DIR$/ProjectH/html/build/libs/exploded/html-1.0.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$/ProjectH">
+        <buildTaskPath>:html:war_exploded</buildTaskPath>
+        <cleanTaskPath>:html:cleanWar_exploded</cleanTaskPath>
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/ProjectH/html/build/libs/exploded/html-1.0.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="ProjectH.html.main/web/Web Gradle : html-1.0.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ProjectH.html.main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/ProjectH/html/build/resources/main" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="ProjectH-core-1.0.jar">
+            <element id="module-output" name="ProjectH.core.main" />
+            <element id="dir-copy" path="$PROJECT_DIR$/ProjectH/core/build/resources/main" />
+          </element>
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-box2d:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-ai:1.8.2" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-jnigen-loader:2.3.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:sources:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-box2d:sources:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-box2d-gwt:sources:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-ai:sources:1.8.2" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx:sources:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.google.jsinterop:jsinterop-annotations:2.0.2" />
+          <element id="library" level="project" name="Gradle: com.google.jsinterop:jsinterop-annotations:sources:2.0.2" />
+          <element id="library" level="project" name="Gradle: com.google.gwt:gwt-user:2.8.2" />
+          <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.0.0.GA" />
+          <element id="library" level="project" name="Gradle: javax.validation:validation-api:sources:1.0.0.GA" />
+          <element id="library" level="project" name="Gradle: org.w3c.css:sac:1.3" />
+          <element id="library" level="project" name="Gradle: org.gwtproject:gwt-servlet:2.10.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
