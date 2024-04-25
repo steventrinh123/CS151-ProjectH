@@ -17,7 +17,8 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.mygdx.game.GameScreen;
 import objects.player.Player;
 
-import static com.mygdx.game.Constants.PPM;
+import static helper.Constants.PPM;
+
 
 public class TileMapHelper {
     private TiledMap tiledMap;
