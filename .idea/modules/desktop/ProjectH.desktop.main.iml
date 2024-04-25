@@ -3,9 +3,6 @@
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/../../../ProjectH/desktop/build/classes/java/main" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../ProjectH/assets">
-      <sourceFolder url="file://$MODULE_DIR$/../../../ProjectH/assets" type="java-resource" />
-    </content>
     <content url="file://$MODULE_DIR$/../../../ProjectH/desktop/src">
       <sourceFolder url="file://$MODULE_DIR$/../../../ProjectH/desktop/src" isTestSource="false" />
     </content>
@@ -14,6 +11,7 @@
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-backend-lwjgl3:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-platform:natives-desktop:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-box2d-platform:natives-desktop:1.12.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-freetype-platform:natives-desktop:1.12.1" level="project" />
     <orderEntry type="module" module-name="ProjectH.core.main" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: org.lwjgl:lwjgl-glfw:3.3.3" level="project" />
@@ -68,6 +66,7 @@
     <orderEntry type="library" name="Gradle: org.jcraft:jorbis:0.0.17" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-box2d:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-ai:1.8.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-freetype:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-jnigen-loader:2.3.1" level="project" />
   </component>
 </module>
