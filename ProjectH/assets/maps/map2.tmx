@@ -19,7 +19,7 @@
   <object id="7" x="64.3546" y="6272.28">
    <polygon points="0,0 0,128 2431.65,127.721 2431.65,-0.278933"/>
   </object>
-  <object id="15" name="player" x="128.355" y="6144.28" width="64" height="64"/>
+  <object id="15" name="player" x="128.355" y="6144.28" width="63" height="63"/>
   <object id="19" x="0" y="6400">
    <polygon points="0,0 64,0 64,-896 0,-896"/>
   </object>

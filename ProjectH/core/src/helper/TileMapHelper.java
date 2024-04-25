@@ -1,6 +1,5 @@
 package helper;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -14,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
-import com.mygdx.game.GameScreen;
+import Screens.GameScreen;
 import objects.player.Player;
 
 import static helper.Constants.PPM;
