@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" external-system-id="GRADLE" name="Gradle : ProjectH : html-1.0.war">
+    <output-path>$PROJECT_DIR$/ProjectH/html/build/libs</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$/ProjectH">
+        <buildTaskPath>:html:war</buildTaskPath>
+        <cleanTaskPath>:html:cleanWar</cleanTaskPath>
+      </options>
+    </properties>
+    <root id="archive" name="html-1.0.war">
+      <element id="artifact" artifact-name="Gradle : ProjectH : html-1.0.war (exploded)" />
+    </root>
+  </artifact>
+</component>
