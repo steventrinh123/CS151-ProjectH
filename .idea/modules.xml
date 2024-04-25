@@ -12,6 +12,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/html/ProjectH.html.iml" filepath="$PROJECT_DIR$/.idea/modules/html/ProjectH.html.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/html/ProjectH.html.main.iml" filepath="$PROJECT_DIR$/.idea/modules/html/ProjectH.html.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/html/ProjectH.html.test.iml" filepath="$PROJECT_DIR$/.idea/modules/html/ProjectH.html.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProjectH.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ProjectH.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProjectH.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ProjectH.test.iml" />
     </modules>
   </component>
 </project>

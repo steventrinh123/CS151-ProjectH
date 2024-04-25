@@ -19,6 +19,8 @@
           <element id="dir-copy" path="$PROJECT_DIR$/ProjectH/html/build/resources/main" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:sources:1.12.1" />
           <element id="archive" name="ProjectH-core-1.0.jar">
             <element id="module-output" name="ProjectH.core.main" />
             <element id="dir-copy" path="$PROJECT_DIR$/ProjectH/core/build/resources/main" />
@@ -27,8 +29,7 @@
           <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-ai:1.8.2" />
           <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx:1.12.1" />
           <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-jnigen-loader:2.3.1" />
-          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:1.12.1" />
-          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:sources:1.12.1" />
+          <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-freetype:1.12.1" />
           <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-box2d:sources:1.12.1" />
           <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-box2d-gwt:sources:1.12.1" />
           <element id="library" level="project" name="Gradle: com.badlogicgames.gdx:gdx-ai:sources:1.8.2" />
