@@ -1,1 +1,4 @@
 include 'desktop', 'html', 'core'
+include 'core:src:rhythm.game'
+findProject(':core:src:rhythm.game')?.name = 'rhythm.game'
+
