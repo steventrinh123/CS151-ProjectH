@@ -2,7 +2,6 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -32,24 +30,28 @@ public class GameScreen extends ScreenAdapter {
     private ProjectH game;
     private Music music;
     private Sound noteSound;
+    private int widthScreen, heightScreen;
 
     private boolean soundCheck = false;
 
     private boolean platformerWinCheck = false;
-    private boolean platformWinScreenChange = false;
-
-
 
     //game objects
     private Player player;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
 
+
     public GameScreen(OrthographicCamera camera) {
+        widthScreen = Gdx.graphics.getWidth();
+        heightScreen = Gdx.graphics.getHeight();
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, widthScreen, heightScreen);
         this.camera = camera;
         this.batch = new SpriteBatch();
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
+
 
         this.tileMapHelper = new TileMapHelper(this);
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();

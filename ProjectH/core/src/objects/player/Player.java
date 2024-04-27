@@ -4,7 +4,6 @@ package objects.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -12,9 +11,6 @@ import static helper.Constants.PPM;
 
 public class Player extends GameEntity {
     private int jumpCounter;
-
-    private int playerTrackerX;
-    private int playerTrackerY;
 
     public Player(float width, float height, Body body) {
         super(width, height, body);
@@ -39,13 +35,9 @@ public class Player extends GameEntity {
         velX = 0;
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
             velX = 1;
-            //dSystem.out.println(body.getPosition().x);
-
-
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             velX = -1;
-            //System.out.println(body.getPosition().x);
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && jumpCounter < 2){

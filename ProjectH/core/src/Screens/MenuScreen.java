@@ -12,19 +12,17 @@ import com.mygdx.game.ProjectH;
 
 public class MenuScreen implements Screen {
     private ProjectH game;
-    private OrthographicCamera camera;
     private SpriteBatch batch;
     Texture inactivePlayButton;
 
     Texture activePlayButton;
+    boolean checkButton = true;
 
-    Texture bad;
-    private OrthographicCamera orthograpicCamera;
+    private OrthographicCamera orthograpicCamera = new OrthographicCamera();
 
 
     public MenuScreen(ProjectH game) {
         this.game = game;
-
     }
 
     @Override
@@ -37,12 +35,25 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch = new SpriteBatch();
 
-
-        bad = new Texture(Gdx.files.internal("badlogic.jpg"));
+        //creates buttons
+        inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
+        activePlayButton = new Texture(Gdx.files.internal("buttons/activePlay.png"));
 
 
         batch.begin();
-        batch.draw(bad,600,400,500,600);
+
+        if(Gdx.input.getX()<700 && Gdx.input.getX()>600 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
+            batch.draw(activePlayButton,600,400,100,50);
+            if (Gdx.input.isTouched()){
+                ProjectH.INSTANCE.setScreen(new GameScreen(orthograpicCamera));
+                checkButton=false;
+
+            }
+        }
+        else{
+            batch.draw(inactivePlayButton,600,400,100,50);
+        }
+
         batch.end();
 
 
