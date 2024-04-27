@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,9 +16,6 @@ import com.mygdx.game.ProjectH;
 import objects.player.Player;
 import helper.TileMapHelper;
 
-
-import java.awt.*;
-
 import static helper.Constants.PPM;
 
 public class GameScreen extends ScreenAdapter {
@@ -29,6 +25,7 @@ public class GameScreen extends ScreenAdapter {
     private Box2DDebugRenderer box2DDebugRenderer;
     private ProjectH game;
     private Music music;
+    private timerHud hud;
 
     private int widthScreen, heightScreen;
 
@@ -51,6 +48,7 @@ public class GameScreen extends ScreenAdapter {
         this.batch = new SpriteBatch();
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
+        hud = new timerHud(batch);
 
 
         this.tileMapHelper = new TileMapHelper(this);
@@ -65,6 +63,7 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         orthogonalTiledMapRenderer.render();
+
 
 
 
@@ -84,6 +83,8 @@ public class GameScreen extends ScreenAdapter {
         //render objects
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         batch.end();
+        batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
 
         if(player.getBody().getPosition().x>127 && player.getBody().getPosition().y > 185){
             platformerWinCheck = true;
@@ -105,6 +106,10 @@ public class GameScreen extends ScreenAdapter {
         batch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
         player.update();
+        hud.update(1000);
+
+
+
 
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
         {
@@ -131,4 +136,5 @@ public class GameScreen extends ScreenAdapter {
     public World getWorld() {
         return world;
     }
+
 }
