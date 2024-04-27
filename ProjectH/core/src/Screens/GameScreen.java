@@ -4,10 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -17,6 +20,8 @@ import objects.player.Player;
 import helper.TileMapHelper;
 
 
+import java.awt.*;
+
 import static helper.Constants.PPM;
 
 public class GameScreen extends ScreenAdapter {
@@ -24,6 +29,16 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
+    private ProjectH game;
+    private Music music;
+    private Sound noteSound;
+
+    private boolean soundCheck = false;
+
+    private boolean platformerWinCheck = false;
+    private boolean platformWinScreenChange = false;
+
+
 
     //game objects
     private Player player;
@@ -49,12 +64,36 @@ public class GameScreen extends ScreenAdapter {
 
         orthogonalTiledMapRenderer.render();
 
+
+        if(!soundCheck) {
+            // load the drop sound effect and the rain background "music"
+            noteSound = Gdx.audio.newSound(Gdx.files.internal("noteSFX.mp3"));
+            music = Gdx.audio.newMusic(Gdx.files.internal("audio.mp3"));
+
+            // start the playback of the background music immediately
+            music.setLooping(true);
+            music.setVolume(0.2f);
+            music.play();
+            soundCheck = true;
+        }
+
         batch.begin();
         //render objects
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         batch.end();
 
+        if(player.getBody().getPosition().x>130 && player.getBody().getPosition().y > 185){
+            platformerWinCheck = true;
+            music.pause();
+            ProjectH.INSTANCE.setScreen(new MenuScreen(game));
+
+        }
+
+
+
+
     }
+
 
     private void update() {
         world.step(1/60f, 6, 2);
@@ -70,6 +109,8 @@ public class GameScreen extends ScreenAdapter {
         }
 
     }
+
+
 
 
     private void cameraUpdate(){

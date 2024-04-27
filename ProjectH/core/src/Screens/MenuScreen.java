@@ -13,6 +13,13 @@ import com.mygdx.game.ProjectH;
 public class MenuScreen implements Screen {
     private ProjectH game;
     private OrthographicCamera camera;
+    private SpriteBatch batch;
+    Texture inactivePlayButton;
+
+    Texture activePlayButton;
+
+    Texture bad;
+    private OrthographicCamera orthograpicCamera;
 
 
     public MenuScreen(ProjectH game) {
@@ -28,6 +35,17 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 150, 5, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch = new SpriteBatch();
+
+
+        bad = new Texture(Gdx.files.internal("badlogic.jpg"));
+
+
+        batch.begin();
+        batch.draw(bad,600,400,500,600);
+        batch.end();
+
+
     }
 
     @Override

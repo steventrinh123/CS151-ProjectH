@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setIdleFPS(60);
 		config.setTitle("project-h");
-		config.setWindowedMode(700,500);
+		config.setWindowedMode(1280,720);
 		new Lwjgl3Application(new ProjectH(), config);
 	}
 }

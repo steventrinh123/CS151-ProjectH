@@ -25,6 +25,7 @@ public class ProjectH extends Game {
 	private Sound noteSound;
 	private MenuScreen menuScreen;
 	private GameScreen gameScreen;
+	private ProjectH test;
 
 	private GameScreen2 gameScreen2;
 	private SpriteBatch batch;
@@ -32,6 +33,8 @@ public class ProjectH extends Game {
 	Texture inactivePlayButton;
 
 	Texture activePlayButton;
+
+	boolean checkButton = true;
 
 	public ProjectH() {
 		INSTANCE = this;
@@ -70,23 +73,8 @@ public class ProjectH extends Game {
 		activePlayButton = new Texture(Gdx.files.internal("buttons/activePlay.png"));
 		//changeScreen(menuScreen);
 
-		// load the drop sound effect and the rain background "music"
-		noteSound = Gdx.audio.newSound(Gdx.files.internal("noteSFX.mp3"));
-		music = Gdx.audio.newMusic(Gdx.files.internal("audio.mp3"));
 
-		// start the playback of the background music immediately
-		music.setLooping(true);
-		music.setVolume(0.4f);
-		music.play();
 
-	}
-
-	public void changeScreen(Screen newScreen){
-		Screen oldScreen = getScreen();
-		setScreen(newScreen);
-		//Dispose the old screen to release resources
-		if(oldScreen != null)
-			oldScreen.dispose();
 	}
 
 	@Override
@@ -95,23 +83,28 @@ public class ProjectH extends Game {
 		Gdx.gl.glClearColor(0, 0, 5, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
+
 		batch.begin();
 
-		if(Gdx.input.getX()<400 && Gdx.input.getX()>300 && Gdx.input.getY()<200 && Gdx.input.getY()>150){
-			batch.draw(activePlayButton,300,300,100,50);
+		if(Gdx.input.getX()<700 && Gdx.input.getX()>600 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
+			batch.draw(activePlayButton,600,400,100,50);
 			if (Gdx.input.isTouched()){
 				this.setScreen(new GameScreen(orthograpicCamera));
+				checkButton=false;
+
 			}
 		}
 		else{
-			batch.draw(inactivePlayButton,300,300,100,50);
+			batch.draw(inactivePlayButton,600,400,100,50);
 		}
-
 
 		batch.end();
 
 		//Render the current Screen
 		super.render();
+
+
 
 
 		if(Gdx.input.isKeyPressed(Input.Keys.P)){
@@ -123,6 +116,16 @@ public class ProjectH extends Game {
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.M)){
 			this.setScreen(menuScreen);
+		}
+
+		if(Gdx.input.isKeyPressed(Input.Keys.J)){
+			this.setScreen(new MenuScreen(test));
+		}
+
+
+		if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+		{
+			Gdx.app.exit();
 		}
 	}
 
