@@ -29,7 +29,7 @@ public class GameScreen extends ScreenAdapter {
     private Box2DDebugRenderer box2DDebugRenderer;
     private ProjectH game;
     private Music music;
-    private Sound noteSound;
+
     private int widthScreen, heightScreen;
 
     private boolean soundCheck = false;
@@ -67,9 +67,10 @@ public class GameScreen extends ScreenAdapter {
         orthogonalTiledMapRenderer.render();
 
 
+
         if(!soundCheck) {
             // load the drop sound effect and the rain background "music"
-            noteSound = Gdx.audio.newSound(Gdx.files.internal("noteSFX.mp3"));
+
             music = Gdx.audio.newMusic(Gdx.files.internal("audio.mp3"));
 
             // start the playback of the background music immediately
@@ -84,7 +85,7 @@ public class GameScreen extends ScreenAdapter {
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         batch.end();
 
-        if(player.getBody().getPosition().x>130 && player.getBody().getPosition().y > 185){
+        if(player.getBody().getPosition().x>127 && player.getBody().getPosition().y > 185){
             platformerWinCheck = true;
             music.pause();
             ProjectH.INSTANCE.setScreen(new MenuScreen(game));
