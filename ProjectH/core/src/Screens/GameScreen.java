@@ -2,8 +2,8 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,7 +16,6 @@ import com.mygdx.game.ProjectH;
 import objects.player.Player;
 import helper.TileMapHelper;
 
-
 import static helper.Constants.PPM;
 
 public class GameScreen extends ScreenAdapter {
@@ -24,17 +23,33 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
+    private ProjectH game;
+    private Music music;
+    private timerHud hud;
+
+    private int widthScreen, heightScreen;
+
+    private boolean soundCheck = false;
+
+    private boolean platformerWinCheck = false;
 
     //game objects
     private Player player;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
 
+
     public GameScreen(OrthographicCamera camera) {
+        widthScreen = Gdx.graphics.getWidth();
+        heightScreen = Gdx.graphics.getHeight();
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, widthScreen, heightScreen);
         this.camera = camera;
         this.batch = new SpriteBatch();
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
+        hud = new timerHud(batch);
+
 
         this.tileMapHelper = new TileMapHelper(this);
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();
@@ -49,12 +64,40 @@ public class GameScreen extends ScreenAdapter {
 
         orthogonalTiledMapRenderer.render();
 
+
+
+
+        if(!soundCheck) {
+            // load the drop sound effect and the rain background "music"
+
+            music = Gdx.audio.newMusic(Gdx.files.internal("audio.mp3"));
+
+            // start the playback of the background music immediately
+            music.setLooping(true);
+            music.setVolume(0.2f);
+            music.play();
+            soundCheck = true;
+        }
+
         batch.begin();
         //render objects
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         batch.end();
+        batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
+
+        if(player.getBody().getPosition().x>127 && player.getBody().getPosition().y > 185){
+            platformerWinCheck = true;
+            music.pause();
+            ProjectH.INSTANCE.setScreen(new MenuScreen(game));
+
+        }
+
+
+
 
     }
+
 
     private void update() {
         world.step(1/60f, 6, 2);
@@ -63,6 +106,10 @@ public class GameScreen extends ScreenAdapter {
         batch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
         player.update();
+        hud.update(1000);
+
+
+
 
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
         {
@@ -70,6 +117,8 @@ public class GameScreen extends ScreenAdapter {
         }
 
     }
+
+
 
 
     private void cameraUpdate(){
@@ -87,4 +136,5 @@ public class GameScreen extends ScreenAdapter {
     public World getWorld() {
         return world;
     }
+
 }
