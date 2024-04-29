@@ -14,7 +14,7 @@ import com.badlogic.gdx.audio.Sound;
 
 public class MenuScreen implements Screen {
     private ProjectH game;
-    private SpriteBatch batch;
+    private SpriteBatch menuBatch;
     Texture inactivePlayButton;
 
     Texture activePlayButton;
@@ -36,7 +36,7 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 150, 5, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch = new SpriteBatch();
+        menuBatch = new SpriteBatch();
 
         //creates buttons
         inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
@@ -44,10 +44,10 @@ public class MenuScreen implements Screen {
 
 
 
-        batch.begin();
+        menuBatch.begin();
 
         if(Gdx.input.getX()<700 && Gdx.input.getX()>600 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
-            batch.draw(activePlayButton,600,400,100,50);
+            menuBatch.draw(activePlayButton,600,400,100,50);
             if (Gdx.input.isTouched()){
                 buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
 
@@ -59,10 +59,10 @@ public class MenuScreen implements Screen {
             }
         }
         else{
-            batch.draw(inactivePlayButton,600,400,100,50);
+            menuBatch.draw(inactivePlayButton,600,400,100,50);
         }
 
-        batch.end();
+        menuBatch.end();
 
 
     }

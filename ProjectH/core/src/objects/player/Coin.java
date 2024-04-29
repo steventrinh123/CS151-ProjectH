@@ -6,15 +6,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.util.ArrayList;
-
 public class Coin {
     private float x_;
     private float y_;
     private Sprite coin_;
     private Texture coinTexture_;
     private boolean coinCollected_;
-    private Sound coinSound_;
+    private static Sound coinSound_;
 
     public Coin(float x, float y) {
         x_ = x;
@@ -22,43 +20,35 @@ public class Coin {
         coinTexture_ = new Texture("buttons/coin.jpeg");
         coinCollected_ = false;
         coin_ = new Sprite(coinTexture_, 0, 0, coinTexture_.getWidth(), coinTexture_.getHeight());
-        coinSound_ = Gdx.audio.newSound(Gdx.files.internal("sounds/coinFound.mp3"));
-    }
-
-    public float getX() {
-        return x_;
-    }
-
-    public float getY() {
-        return y_;
-    }
-
-    public boolean checkCollected() {
-        return coinCollected_;
+        if (coinSound_ == null) {
+            coinSound_ = Gdx.audio.newSound(Gdx.files.internal("sounds/coinFound.mp3"));
+        }
+        coin_.setPosition(x_, y_);
     }
 
     public void setCollected(boolean collected) {
         coinCollected_ = collected;
     }
 
-    public void coinDisplay(SpriteBatch batch, float x, float y) {
-        coinCollected_ = false;
-        coin_.setPosition(x, y);
-        coin_.draw(batch);
+    public void coinDisplay(SpriteBatch batch) {
+        if (!coinCollected_) {
+            coin_.draw(batch);
+        }
     }
 
-    public boolean inRegion(Player player) {
+    public int inRegion(Player player) {
+        int offset = 2;
         float x = player.getBody().getPosition().x;
         float y = player.getBody().getPosition().y;
 
-        if(x>= x_ - 1 && x<= x_ + 1 && y>= y_ - 1 && y<= y_ + 1) {
-            coin_.setPosition(0,0);
-            if(!coinCollected_) {
+        if (x >= x_ - offset && x <= x_ + offset && y >= y_ - offset && y <= y_ + offset) {
+            if (!coinCollected_) {
                 coinSound_.play();
                 coinCollected_ = true;
+                return 1;
             }
-            return true;
+            return 0;
         }
-        return false;
+        return 0;
     }
 }

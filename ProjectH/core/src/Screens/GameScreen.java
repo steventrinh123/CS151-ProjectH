@@ -26,7 +26,7 @@ import static helper.Constants.PPM;
 
 public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
-    private SpriteBatch batch;
+    private SpriteBatch gameScreenBatch;
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
     private ProjectH game;
@@ -56,22 +56,21 @@ public class GameScreen extends ScreenAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, widthScreen, heightScreen);
         this.camera = camera;
-        this.batch = new SpriteBatch();
+        this.gameScreenBatch = new SpriteBatch();
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
-        hud = new timerHud(batch);
+        hud = new timerHud(gameScreenBatch);
 
 
         this.tileMapHelper = new TileMapHelper(this);
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();
 
-        /*
-        coinsArr_ = new ArrayList<Coin>();
-        coinsArr_.add(new Coin(50, 60));
-        coinsArr_.add(new Coin(70, 60));
-        coinsArr_.add(new Coin(90, 60));
 
-         */
+        coinsArr_ = new ArrayList<Coin>();
+        coinsArr_.add(new Coin(50, 55));
+        coinsArr_.add(new Coin(60, 55));
+        coinsArr_.add(new Coin(70, 55));
+
 
         coinTexture = new Texture(Gdx.files.internal("buttons/coin.jpeg"));
         coinSprite = new Sprite(coinTexture, 0, 0, coinTexture.getWidth(), coinTexture.getHeight());
@@ -100,45 +99,58 @@ public class GameScreen extends ScreenAdapter {
         }
 
 
-        batch.begin();
+        gameScreenBatch.begin();
         //render objects
-        //coinSprite.draw(batch);
-
+        //coinSprite.draw(gameScreenBatch;
         for(Coin coin : coinsArr_) {
-            coin.coinDisplay(batch, coin.getX(), coin.getY());
+            coin.coinDisplay(gameScreenBatch);
+            coinCounter += coin.inRegion(player);
         }
 
-        box2DDebugRenderer.render(world, camera.combined.scl(PPM));
-        batch.end();
-        batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+        // Display the World
+        displayWorld();
 
-        if(player.getBody().getPosition().x>127 && player.getBody().getPosition().y > 185 && coinCounter == 3){
+        // Checking the end conditions
+        int end_offset_x = 127;
+        int end_offset_y = 185;
+
+        if (end(player, end_offset_x, end_offset_y)) {
+            // Done
+        }
+    }
+
+    /* @brief Ends the game when the offsets are met
+    *  @param player
+    *  @param end_offset_x
+    *  @param end_offset_y
+    *  @return boolean on whether we finished the game
+    * */
+    boolean end(Player player, int end_offset_x, int end_offset_y) {
+        float x = player.getBody().getPosition().x;
+        float y = player.getBody().getPosition().y;
+
+        if (x > end_offset_x && y > end_offset_y) {
             platformerWinCheck = true;
             music.pause();
             ProjectH.INSTANCE.setScreen(new MenuScreen(game));
-
+            return true;
         }
-        if(player.getBody().getPosition().x>=99 && player.getBody().getPosition().x<=101 && player.getBody().getPosition().y>=49
-        && player.getBody().getPosition().y<=51) {
-            coinSprite.setPosition(0,0);
-            coinCounter++;
-            Sound coinSound = Gdx.audio.newSound(Gdx.files.internal("sounds/coinFound.mp3"));
-            if(!soundPlayed) {
-                coinSound.play();
-                soundPlayed = true;
-            }
 
+        return false;
     }
 
+    void displayWorld() {
+        box2DDebugRenderer.render(world, camera.combined.scl(PPM));
+        gameScreenBatch.end();
+        gameScreenBatch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
     }
-
 
     private void update() {
         world.step(1/60f, 6, 2);
         cameraUpdate();
 
-        batch.setProjectionMatrix(camera.combined);
+        gameScreenBatch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
         player.update();
         hud.update(1000);
@@ -173,7 +185,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        batch.dispose();
+        gameScreenBatch.dispose();
         coinTexture.dispose();
     }
 }

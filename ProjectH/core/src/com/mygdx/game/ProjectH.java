@@ -15,7 +15,7 @@ public class ProjectH extends Game {
 
 	private ProjectH test;
 
-	private SpriteBatch batch;
+	private SpriteBatch gameBatch;
 
 	boolean menuCheck = true;
 	public ProjectH() {
@@ -24,9 +24,10 @@ public class ProjectH extends Game {
 
 	}
 
+
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
+		gameBatch = new SpriteBatch();
 	}
 
 	@Override
