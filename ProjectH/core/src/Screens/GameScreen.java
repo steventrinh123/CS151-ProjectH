@@ -67,9 +67,11 @@ public class GameScreen extends ScreenAdapter {
 
 
         coinsArr_ = new ArrayList<Coin>();
-        coinsArr_.add(new Coin(50, 55));
-        coinsArr_.add(new Coin(60, 55));
         coinsArr_.add(new Coin(70, 55));
+        coinsArr_.add(new Coin(60, 55));
+        coinsArr_.add(new Coin(50, 55));
+
+
 
 
         coinTexture = new Texture(Gdx.files.internal("buttons/coin.jpeg"));

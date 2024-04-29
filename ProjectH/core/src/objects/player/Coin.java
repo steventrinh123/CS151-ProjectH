@@ -17,13 +17,18 @@ public class Coin {
     public Coin(float x, float y) {
         x_ = x;
         y_ = y;
-        coinTexture_ = new Texture("buttons/coin.jpeg");
+        coinTexture_ = new Texture("buttons/coinTest.png");
         coinCollected_ = false;
         coin_ = new Sprite(coinTexture_, 0, 0, coinTexture_.getWidth(), coinTexture_.getHeight());
         if (coinSound_ == null) {
             coinSound_ = Gdx.audio.newSound(Gdx.files.internal("sounds/coinFound.mp3"));
         }
         coin_.setPosition(x_, y_);
+    }
+
+
+    public boolean checkCollected() {
+        return coinCollected_;
     }
 
     public void setCollected(boolean collected) {
