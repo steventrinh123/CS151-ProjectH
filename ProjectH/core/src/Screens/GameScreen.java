@@ -147,7 +147,7 @@ public class GameScreen extends ScreenAdapter {
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         gameScreenBatch.end();
         gameScreenBatch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+        hud.draw(gameScreenBatch);
     }
 
     private void update() {
