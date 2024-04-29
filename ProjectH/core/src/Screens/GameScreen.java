@@ -65,9 +65,16 @@ public class GameScreen extends ScreenAdapter {
 
 
         coinsArr_ = new ArrayList<Coin>();
-        coinsArr_.add(new Coin(70, 55));
-        coinsArr_.add(new Coin(60, 55));
-        coinsArr_.add(new Coin(50, 55));
+        coinsArr_.add(new Coin(95, 188));
+        coinsArr_.add(new Coin(80, 185));
+        coinsArr_.add(new Coin(50, 170));
+        coinsArr_.add(new Coin(69, 154));
+        coinsArr_.add(new Coin(100, 137));
+        coinsArr_.add(new Coin(52, 125));
+        coinsArr_.add(new Coin(100, 100));
+        coinsArr_.add(new Coin(71, 80));
+        coinsArr_.add(new Coin(129, 60));
+        coinsArr_.add(new Coin(71, 55));
     }
 
     @Override
@@ -95,6 +102,8 @@ public class GameScreen extends ScreenAdapter {
         gameScreenBatch.begin();
         //render objects
         //coinSprite.draw(gameScreenBatch;
+
+        // Coin logic
         for(Coin coin : coinsArr_) {
             coin.coinDisplay(gameScreenBatch);
             coinCounter += coin.inRegion(player);
@@ -122,7 +131,7 @@ public class GameScreen extends ScreenAdapter {
         float x = player.getBody().getPosition().x;
         float y = player.getBody().getPosition().y;
 
-        if (x > end_offset_x && y > end_offset_y) {
+        if (x > end_offset_x && y > end_offset_y && coinCounter == 10) {
             platformerWinCheck = true;
             music.pause();
             ProjectH.INSTANCE.setScreen(new MenuScreen(game));
