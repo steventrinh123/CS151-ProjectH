@@ -32,8 +32,6 @@ public class GameScreen extends ScreenAdapter {
     private ProjectH game;
     private Music music;
     private timerHud hud;
-    private Texture coinTexture;
-    private Sprite coinSprite;
     private int coinCounter;
     private boolean soundPlayed = false;
     private ArrayList<Coin> coinsArr_;
@@ -70,13 +68,6 @@ public class GameScreen extends ScreenAdapter {
         coinsArr_.add(new Coin(70, 55));
         coinsArr_.add(new Coin(60, 55));
         coinsArr_.add(new Coin(50, 55));
-
-
-
-
-        coinTexture = new Texture(Gdx.files.internal("buttons/coin.jpeg"));
-        coinSprite = new Sprite(coinTexture, 0, 0, coinTexture.getWidth(), coinTexture.getHeight());
-        coinSprite.setPosition(100,50);
     }
 
     @Override
@@ -188,6 +179,5 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void dispose() {
         gameScreenBatch.dispose();
-        coinTexture.dispose();
     }
 }
