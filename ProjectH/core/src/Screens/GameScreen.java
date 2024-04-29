@@ -64,6 +64,7 @@ public class GameScreen extends ScreenAdapter {
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();
 
 
+        coinCounter = 0;
         coinsArr_ = new ArrayList<Coin>();
         coinsArr_.add(new Coin(95, 188));
         coinsArr_.add(new Coin(80, 185));
@@ -107,6 +108,7 @@ public class GameScreen extends ScreenAdapter {
         for(Coin coin : coinsArr_) {
             coin.coinDisplay(gameScreenBatch);
             coinCounter += coin.inRegion(player);
+            hud.updateCoinCount(coinCounter);
         }
 
         // Display the World

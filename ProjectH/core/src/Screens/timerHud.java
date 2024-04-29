@@ -17,7 +17,7 @@ public class timerHud implements Disposable {
     private Viewport viewport;
     private Integer timeCount = 0;
     private Label timeLabel;
-
+    private Label coinCountLabel;
     private float time;
 
     public timerHud(SpriteBatch batch){
@@ -35,7 +35,13 @@ public class timerHud implements Disposable {
         table.add(timeLabel).expandX().padTop(10);
         stage.addActor(table);
 
+        coinCountLabel = new Label("Coins: 0", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        coinCountLabel.setPosition(10, stage.getHeight() - 20);
+        stage.addActor(coinCountLabel);
+    }
 
+    public void updateCoinCount(int coins) {
+        coinCountLabel.setText("Coins: " + coins);
     }
 
     public void update(float t){
@@ -45,5 +51,8 @@ public class timerHud implements Disposable {
             System.out.println(timeLabel);
     }
     @Override
-    public void dispose() { stage.dispose(); }
+    public void dispose() {
+        stage.dispose();
+        coinCountLabel.getStyle().font.dispose();
+    }
 }

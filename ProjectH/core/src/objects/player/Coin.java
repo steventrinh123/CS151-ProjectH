@@ -17,7 +17,7 @@ public class Coin {
     public Coin(float x, float y) {
         x_ = x;
         y_ = y;
-        coinTexture_ = new Texture("buttons/coinTest.png");
+        coinTexture_ = new Texture("buttons/coin.jpeg");
         coinCollected_ = false;
         coin_ = new Sprite(coinTexture_, 0, 0, coinTexture_.getWidth(), coinTexture_.getHeight());
         if (coinSound_ == null) {
