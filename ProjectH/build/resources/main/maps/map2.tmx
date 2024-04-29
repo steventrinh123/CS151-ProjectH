@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#84a8ff" nextlayerid="20" nextobjectid="71">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="64" tileheight="64" infinite="0" backgroundcolor="#84a8ff" nextlayerid="20" nextobjectid="77">
  <tileset firstgid="1" source="tiles.tsx"/>
  <imagelayer id="16" name="Image Layer 3" offsetx="1408" offsety="0">
   <image source="IMG_5A5F9C0905E1-1.jpeg" width="1179" height="2556"/>
@@ -21,23 +21,23 @@
  </imagelayer>
  <layer id="1" name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztmEGKwkAUBQOeQXDw/vecleCTGZOYdNfvtgoeszBKrLKzmPuyLPeTNzpn+6A3OrQ/eyS0P3sktD97JLQ/eyS0P3sktL/Ze1x3jvY3e4+90P5m6nE94TNofzP1OAPa30g9zvj9r0H7q9Sjh+81aH+VelSA9te7R4Uz8A7an+cjof3ZI6H92SOh/bXq8fj/w2jQ/uyR0P5a9TgC2ZL2N1uPoy1pf717tP7t26Nfjx7PMdpf7x5HsEetHj2g/X1Lj61ni/Znj4T29y09tkL7s0eeHdqfPfLeaX/2SGh/9khof/ZIaH8Veqy9t9Xrf9077e+be7y7dpZ9gj3ssXbtLHv3/UaA9mePhPbXusdo0P7skdD+7JHQ/nr2GKEb7a9qD6od7a9nj0+9tLh+y+fMMAp71OqxlbV7pf3Z4//XZ9jo0P7skdD+7JHQ/ir0uD2NuvYB7c8eCe2vQo9K0P7skdD+7JHQ/lr3uC2fPccpaH/2SGh/rXuMBu3PHgntr0qPKs812p89EtpflR5VoP2N1qP1OaL92SOh/Y3WYwtHmtH+7JHQ/mbscQTanz0S2p89EtqfPRLanz0S2p89Etpfzx6X/Xq6Q/vr0ePy8rcytL+WPV472MMee6H9nb2fwUf7s8fcPZxzzjnnnHPOOeecc84555xzzrnR9gvfu6KY
+   eJztnFFqwkAABQOeocXi/e9ZCg34RJOYuDu7mxl4VMy22JmaDz96m6bp9uH1zqd90Osd2p89EtqfPRLanz0S2p89EtqfPRLa3+g9vt4c7W/0Hu9C+7NHQvuzR0L7s0dC+7NHQvuzR0L7s0dC+7NHQvuzR0L7s0dC+yvVY/78oTdof/ZIaH+lehyBbEn7G63H0Za0v9o9Sv/t26Nejxr3Mdpf7R5HsEdbPWpA+ztLj63vLdqfPRLa31l6LPH9vz9of/awR8vQ/uyR0P7skdD+7JHQ/lrosfa9pa4/e+20vzP3WDo7yvZgD3usnR1lS79fD9D+7JHQ/kr36A3anz0S2p89EtpfzR49dKP9tdqDakf7q9ljr5cS57f8nBFGYY+2emxl7bXS/uzx+voI6x3anz0S2p89EtpfCz2ud6POztD+7JHQ/lro0RK0P3sktD97JLS/0j2u0777OAXtzx4J7a90j96g/dkjof210qOV+xrtzx4J7a+VHq1A++utR+n3Ee3PHgntr7ceWzjSjPZnj4T2N2KPI9D+7JHQ/uyR0P7O3OP+/zLM0P7skdD+7JHQ/mr2uDy4WHt8/9yz7Tm3dp32V6PH5eHr7GXtMQHtr2SPxw7v9KC60P7skdD+Pr2fzkf7s8fYPZxzzjnnnHPOOeecc84555xzzrne9gsxgaVq
   </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="4" x="1536.36" y="4992.28">
+  <object id="4" x="1536" y="4992">
    <polygon points="0,0 0,-128 64,-128 64,0"/>
   </object>
-  <object id="5" x="1664.35" y="4800.28">
+  <object id="5" x="1664" y="4800">
    <polygon points="0,0 0,192 64,192 64,0"/>
   </object>
-  <object id="6" x="1792.35" y="4736.28">
+  <object id="6" x="1792" y="4736">
    <polygon points="0,0 0,256 64,256 64,0"/>
   </object>
-  <object id="7" x="1344.36" y="4992.28">
+  <object id="7" x="1344" y="4992">
    <polygon points="0,0 0,128 3071.64,127.72 3071.64,-0.28"/>
   </object>
-  <object id="15" name="player" x="1408.36" y="4864.28" width="63" height="63"/>
+  <object id="15" name="player" x="1408" y="4864" width="63" height="63"/>
   <object id="19" x="1280" y="5120">
    <polygon points="0,0 64,0 64,-5120 0,-5120"/>
   </object>
@@ -89,7 +89,7 @@
   <object id="46" x="4096" y="2176">
    <polygon points="0,0 0,64 256,64 256,0"/>
   </object>
-  <object id="47" x="4224" y="1856">
+  <object id="47" x="4224" y="1792">
    <polygon points="0,0 0,128 128,128 128,0"/>
   </object>
   <object id="48" x="3776" y="1664">
