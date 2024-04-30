@@ -1,16 +1,13 @@
 package Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.ProjectH;
-import com.badlogic.gdx.audio.Sound;
 
 public class MenuScreen implements Screen {
     private ProjectH game;
@@ -18,6 +15,10 @@ public class MenuScreen implements Screen {
     Texture inactivePlayButton;
 
     Texture activePlayButton;
+
+    Texture inactiveRhythmButton;
+    Texture activeRhythmButton;
+    RhythmGame rhythmGame1;
     boolean checkButton = true;
     private Sound buttonSound;
 
@@ -37,17 +38,24 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClearColor(0, 150, 5, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         menuBatch = new SpriteBatch();
+        rhythmGame1 = new RhythmGame();
 
         //creates buttons
         inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
         activePlayButton = new Texture(Gdx.files.internal("buttons/activePlay.png"));
+        inactiveRhythmButton = new Texture(Gdx.files.internal("buttons/inactiveRhythm.png"));
+        activeRhythmButton = new Texture(Gdx.files.internal("buttons/activeRhythm.png"));
 
 
 
         menuBatch.begin();
 
+        menuBatch.draw(inactiveRhythmButton,300,400,100,50);
+        menuBatch.draw(inactivePlayButton,600,400,100,50);
+
         if(Gdx.input.getX()<700 && Gdx.input.getX()>600 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
             menuBatch.draw(activePlayButton,600,400,100,50);
+            menuBatch.draw(inactiveRhythmButton,300,400,100,50);
             if (Gdx.input.isTouched()){
                 buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
 
@@ -57,8 +65,19 @@ public class MenuScreen implements Screen {
                 checkButton=false;
 
             }
-        }
-        else{
+        }else if(Gdx.input.getX()<400 && Gdx.input.getX()>300 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
+            menuBatch.draw(inactivePlayButton,600,400,100,50);
+            menuBatch.draw(activeRhythmButton,300,400,100,50);
+            if (Gdx.input.isTouched()){
+                buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
+
+                buttonSound.play();
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(rhythmGame1);
+                checkButton=false;
+
+            }
+        }else{
             menuBatch.draw(inactivePlayButton,600,400,100,50);
         }
 
