@@ -13,5 +13,6 @@ public class DesktopLauncher {
 		config.setTitle("project-h");
 		config.setWindowedMode(1280,720);
 		new Lwjgl3Application(new ProjectH(), config);
+
 	}
 }

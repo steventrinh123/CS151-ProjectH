@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -19,6 +20,8 @@ public class timerHud implements Disposable {
     private Label timeLabel;
 
     private float time;
+
+    private ShapeRenderer shapeRenderer;
 
     public timerHud(SpriteBatch batch){
 
@@ -37,6 +40,7 @@ public class timerHud implements Disposable {
 
 
     }
+
 
     public void update(float t){
         time += t;
