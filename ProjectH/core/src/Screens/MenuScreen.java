@@ -14,10 +14,15 @@ import com.badlogic.gdx.audio.Sound;
 
 public class MenuScreen implements Screen {
     private ProjectH game;
-    private SpriteBatch batch;
+    private SpriteBatch menuBatch;
     Texture inactivePlayButton;
 
     Texture activePlayButton;
+
+    Texture inactiveRhythmButton;
+    Texture activeRhythmButton;
+    RhythmGame rhythmGame;
+
     boolean checkButton = true;
     private Sound buttonSound;
 
@@ -36,18 +41,25 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 150, 5, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch = new SpriteBatch();
+        menuBatch = new SpriteBatch();
+        rhythmGame = new RhythmGame();
 
         //creates buttons
         inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
         activePlayButton = new Texture(Gdx.files.internal("buttons/activePlay.png"));
+        inactiveRhythmButton = new Texture(Gdx.files.internal("buttons/inactiveRhythm.png"));
+        activeRhythmButton = new Texture(Gdx.files.internal("buttons/activeRhythm.png"));
 
 
 
-        batch.begin();
+        menuBatch.begin();
+
+        menuBatch.draw(inactiveRhythmButton,300,400,100,50);
+        menuBatch.draw(inactivePlayButton,600,400,100,50);
 
         if(Gdx.input.getX()<700 && Gdx.input.getX()>600 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
-            batch.draw(activePlayButton,600,400,100,50);
+            menuBatch.draw(activePlayButton,600,400,100,50);
+            menuBatch.draw(inactiveRhythmButton,300,400,100,50);
             if (Gdx.input.isTouched()){
                 buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
 
@@ -57,12 +69,23 @@ public class MenuScreen implements Screen {
                 checkButton=false;
 
             }
-        }
-        else{
-            batch.draw(inactivePlayButton,600,400,100,50);
+        }else if(Gdx.input.getX()<400 && Gdx.input.getX()>300 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
+            menuBatch.draw(inactivePlayButton,600,400,100,50);
+            menuBatch.draw(activeRhythmButton,300,400,100,50);
+            if (Gdx.input.isTouched()){
+                buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
+
+                buttonSound.play();
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(rhythmGame);
+                checkButton=false;
+
+            }
+        }else{
+            menuBatch.draw(inactivePlayButton,600,400,100,50);
         }
 
-        batch.end();
+        menuBatch.end();
 
 
     }

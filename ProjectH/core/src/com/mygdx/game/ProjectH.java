@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 
 import Screens.MenuScreen;
+import Screens.RhythmGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -15,7 +16,7 @@ public class ProjectH extends Game {
 
 	private ProjectH test;
 
-	private SpriteBatch batch;
+	private SpriteBatch gameBatch;
 
 	boolean menuCheck = true;
 	public ProjectH() {
@@ -24,9 +25,10 @@ public class ProjectH extends Game {
 
 	}
 
+
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
+		gameBatch = new SpriteBatch();
 	}
 
 	@Override
@@ -47,6 +49,12 @@ public class ProjectH extends Game {
 		{
 			Gdx.app.exit();
 		}
+		if(Gdx.input.isKeyPressed(Input.Keys.U))
+		{
+			this.dispose();
+
+		}
+
 	}
 
 	@Override
