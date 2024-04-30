@@ -124,11 +124,11 @@ public class GameScreen extends ScreenAdapter {
     }
 
     /* @brief Ends the game when the offsets are met
-    *  @param player
-    *  @param end_offset_x
-    *  @param end_offset_y
-    *  @return boolean on whether we finished the game
-    * */
+     *  @param player
+     *  @param end_offset_x
+     *  @param end_offset_y
+     *  @return boolean on whether we finished the game
+     * */
     boolean end(Player player, int end_offset_x, int end_offset_y) {
         float x = player.getBody().getPosition().x;
         float y = player.getBody().getPosition().y;
@@ -143,7 +143,7 @@ public class GameScreen extends ScreenAdapter {
         return false;
     }
 
-    void displayWorld() {
+    public void displayWorld() {
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         gameScreenBatch.end();
         gameScreenBatch.setProjectionMatrix(hud.stage.getCamera().combined);

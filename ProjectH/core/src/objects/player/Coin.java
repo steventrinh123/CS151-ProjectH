@@ -7,37 +7,37 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Coin {
-    private float x_;
-    private float y_;
-    private Sprite coin_;
-    private Texture coinTexture_;
-    private boolean coinCollected_;
-    private static Sound coinSound_;
+    private float x;
+    private float y;
+    private Sprite coin;
+    private Texture coinTexture;
+    private boolean coinCollected;
+    private static Sound coinSound;
 
     public Coin(float x, float y) {
-        x_ = x;
-        y_ = y;
-        coinTexture_ = new Texture("buttons/coin.jpeg");
-        coinCollected_ = false;
-        coin_ = new Sprite(coinTexture_, 0, 0, coinTexture_.getWidth(), coinTexture_.getHeight());
-        if (coinSound_ == null) {
-            coinSound_ = Gdx.audio.newSound(Gdx.files.internal("sounds/coinFound.mp3"));
+        x = x;
+        y = y;
+        coinTexture = new Texture("buttons/coin.jpeg");
+        coinCollected = false;
+        coin = new Sprite(coinTexture, 0, 0, coinTexture.getWidth(), coinTexture.getHeight());
+        if (coinSound == null) {
+            coinSound = Gdx.audio.newSound(Gdx.files.internal("sounds/coinFound.mp3"));
         }
-        coin_.setPosition(x_, y_);
+        coin.setPosition(x, y);
     }
 
 
     public boolean checkCollected() {
-        return coinCollected_;
+        return coinCollected;
     }
 
     public void setCollected(boolean collected) {
-        coinCollected_ = collected;
+        coinCollected = collected;
     }
 
     public void coinDisplay(SpriteBatch batch) {
-        if (!coinCollected_) {
-            coin_.draw(batch);
+        if (!coinCollected) {
+            coin.draw(batch);
         }
     }
 
@@ -46,10 +46,10 @@ public class Coin {
         float x = player.getBody().getPosition().x;
         float y = player.getBody().getPosition().y;
 
-        if (x >= x_ - offset && x <= x_ + offset && y >= y_ - offset && y <= y_ + offset) {
-            if (!coinCollected_) {
-                coinSound_.play();
-                coinCollected_ = true;
+        if (x >= x - offset && x <= x + offset && y >= y - offset && y <= y + offset) {
+            if (!coinCollected) {
+                coinSound.play();
+                coinCollected = true;
                 return 1;
             }
             return 0;
