@@ -21,6 +21,8 @@ public class MenuScreen implements Screen {
 
     Texture inactiveRhythmButton;
     Texture activeRhythmButton;
+    RhythmGame rhythmGame;
+
     boolean checkButton = true;
     private Sound buttonSound;
 
@@ -40,6 +42,7 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClearColor(0, 150, 5, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         menuBatch = new SpriteBatch();
+        rhythmGame = new RhythmGame();
 
         //creates buttons
         inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
@@ -73,8 +76,8 @@ public class MenuScreen implements Screen {
                 buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
 
                 buttonSound.play();
-
-                ProjectH.INSTANCE.setScreen(new GameScreen(orthograpicCamera));
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(rhythmGame);
                 checkButton=false;
 
             }
