@@ -26,6 +26,8 @@ public class MenuScreen implements Screen {
 
     private OrthographicCamera orthograpicCamera = new OrthographicCamera();
 
+    private RhythmGame rhythmGame;
+
 
     public MenuScreen(ProjectH game) {
         this.game = game;
@@ -40,6 +42,8 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClearColor(0, 150, 5, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         menuBatch = new SpriteBatch();
+
+        rhythmGame = new RhythmGame();
 
         //creates buttons
         inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
@@ -72,7 +76,7 @@ public class MenuScreen implements Screen {
 
                 buttonSound.play();
 
-                ProjectH.INSTANCE.setScreen(new GameScreen(orthograpicCamera));
+                ProjectH.INSTANCE.setScreen(rhythmGame);
                 checkButton=false;
 
             }
