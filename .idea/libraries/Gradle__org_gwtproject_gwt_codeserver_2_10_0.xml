@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.gwtproject:gwt-codeserver:2.10.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.gwtproject" artifactId="gwt-codeserver" version="2.10.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.gwtproject/gwt-codeserver/2.10.0/4de6c7796160df0fbd17bbed5cc29967202a9f38/gwt-codeserver-2.10.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
