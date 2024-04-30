@@ -1,16 +1,13 @@
 package Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.ProjectH;
-import com.badlogic.gdx.audio.Sound;
 
 public class MenuScreen implements Screen {
     private ProjectH game;
@@ -21,8 +18,7 @@ public class MenuScreen implements Screen {
 
     Texture inactiveRhythmButton;
     Texture activeRhythmButton;
-    RhythmGame rhythmGame;
-
+    RhythmGame rhythmGame1;
     boolean checkButton = true;
     private Sound buttonSound;
 
@@ -42,7 +38,7 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClearColor(0, 150, 5, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         menuBatch = new SpriteBatch();
-        rhythmGame = new RhythmGame();
+        rhythmGame1 = new RhythmGame();
 
         //creates buttons
         inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
@@ -77,7 +73,7 @@ public class MenuScreen implements Screen {
 
                 buttonSound.play();
                 this.dispose();
-                ProjectH.INSTANCE.setScreen(rhythmGame);
+                ProjectH.INSTANCE.setScreen(rhythmGame1);
                 checkButton=false;
 
             }

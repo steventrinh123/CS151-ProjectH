@@ -13,49 +13,42 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.mygdx.game.ProjectH;
 
 public class RhythmGame extends ScreenAdapter {
-    private Texture noteTexture;
-    private Texture characterImage;
-    private Texture score300;
-    private Texture score100;
-    private Texture scoreMiss;
+    private Texture noteTexture1;
+    private Texture characterImage1;
+    private Texture scoreIs300;
+    private Texture scoreIs100;
+    private Texture scoreIsMiss;
     private Sound soundEffect;
-    private Music music;
+    private Music music1;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Rectangle character;
     private Array<Rectangle> notes;
     private long lastDropTime;
     private int counter = 1;
-    private ProjectH game;
-    private boolean soundCheck = false;
-
+    private boolean checkSound = false;
 
     private HashMap<Integer, Float> listOfNotes = new HashMap<>();
 
-    public RhythmGame()
-    {
+    public RhythmGame() {
         // load the images for the note and the character, 64x64 pixels each
-        noteTexture = new Texture(Gdx.files.internal("buttons/note2.png"));
-        characterImage = new Texture(Gdx.files.internal("buttons/frij.png"));
+        noteTexture1 = new Texture(Gdx.files.internal("buttons/note2.png"));
+        characterImage1 = new Texture(Gdx.files.internal("buttons/frij.png"));
 
-        score300 = new Texture(Gdx.files.internal("score/300.png"));
-        score100 = new Texture(Gdx.files.internal("score/100.png"));
-        scoreMiss = new Texture(Gdx.files.internal("score/miss.png"));
+        scoreIs300 = new Texture(Gdx.files.internal("score/300.png"));
+        scoreIs100 = new Texture(Gdx.files.internal("score/100.png"));
+        scoreIsMiss = new Texture(Gdx.files.internal("score/miss.png"));
 
 
         // load the note sound effect and the music
         soundEffect = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
-        music = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
+        music1 = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
         //music = Gdx.audio.newMusic(Gdx.files.internal("audio2.mp3"));
         //music = Gdx.audio.newMusic(Gdx.files.internal("audio3_160bpm.mp3"));
 
-        // start the playback of the music immediately
-        //music.play();
 
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
@@ -73,45 +66,6 @@ public class RhythmGame extends ScreenAdapter {
         // create the notes array
         notes = new Array<Rectangle>();
     }
-
-
-
-   /*@Override
-    public void create() {
-        // load the images for the note and the character, 64x64 pixels each
-        noteTexture = new Texture(Gdx.files.internal("buttons/note2.png"));
-        characterImage = new Texture(Gdx.files.internal("buttons/frij.png"));
-
-        score300 = new Texture(Gdx.files.internal("score/300.png"));
-        score100 = new Texture(Gdx.files.internal("score/100.png"));
-        scoreMiss = new Texture(Gdx.files.internal("score/miss.png"));
-
-
-        // load the note sound effect and the music
-        soundEffect = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
-        music = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
-        //music = Gdx.audio.newMusic(Gdx.files.internal("audio2.mp3"));
-        //music = Gdx.audio.newMusic(Gdx.files.internal("audio3_160bpm.mp3"));
-
-        // start the playback of the music immediately
-        music.play();
-
-        // create the camera and the SpriteBatch
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
-        //camera.setToOrtho(false, 1500, 642);
-        batch = new SpriteBatch();
-
-        // create a Rectangle to logically represent the character
-        character = new Rectangle();
-        character.x = 800 / 2 - 64 / 2; // center the character horizontally
-        character.y = 20; // bottom left corner of the character is 20 pixels above the bottom screen edge
-        character.width = 64;
-        character.height = 64;
-
-        // create the notes array
-        notes = new Array<Rectangle>();
-    }*/
 
     private void spawnRaindrop(int a) {
         Rectangle raindrop;
@@ -290,28 +244,25 @@ public class RhythmGame extends ScreenAdapter {
     public void render(float delta) {
         // clear the screen with a dark blue color.
         // The arguments to clear are the red, green blue and alpha component in the range [0,1] of the color to be used to clear the screen.
-        //creenUtils.clear(0, 0, 0.2f, 1);
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        Texture img = new Texture("background/bg.jpg");
+        Gdx.gl.glClearColor(0,0,0,1.1F);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Texture img1 = new Texture("background/bg.jpg");
         batch.begin();
-        batch.draw(img ,0, 0);
+        batch.draw(img1 ,0, 0);
         batch.end();
 
-        if(!soundCheck) {
-            // load the drop sound effect and the rain background "music"
-
-            music = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
-
-            // start the playback of the background music immediately
-            music.setLooping(true);
-            music.setVolume(0.2f);
-            music.play();
-            soundCheck = true;
+        if(!checkSound) {
+            // load the note sound effect and the music
+            music1 = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
+            // start the playback of the music immediately
+            music1.setLooping(true);
+            music1.setVolume(0.2f);
+            music1.play();
+            checkSound = true;
         }
 
-        if(!music.isPlaying()){
+        if(!music1.isPlaying()){
             //exit app when the music ends
             Gdx.app.exit();
         }
@@ -324,9 +275,9 @@ public class RhythmGame extends ScreenAdapter {
 
         // begin a new batch and draw the character and all notes
         batch.begin();
-        batch.draw(characterImage, character.x, character.y);
+        batch.draw(characterImage1, character.x, character.y);
         for(Rectangle raindrop: notes) {
-            batch.draw(noteTexture, raindrop.x, raindrop.y);
+            batch.draw(noteTexture1, raindrop.x, raindrop.y);
         }
         batch.end();
 
@@ -387,16 +338,16 @@ public class RhythmGame extends ScreenAdapter {
             if(raindrop.y <= 64) {
                 if (raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 20) {
                     soundEffect.play();
-                    batch.draw(score300, raindrop.x, raindrop.y + 64);
+                    batch.draw(scoreIs300, raindrop.x, raindrop.y + 64);
                     iter.remove();
 
                 }else if(raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 50 ){
                     soundEffect.play();
-                    batch.draw(score100, raindrop.x, raindrop.y + 64);
+                    batch.draw(scoreIs100, raindrop.x, raindrop.y + 64);
                     iter.remove();
 
                 } else {
-                    batch.draw(scoreMiss, raindrop.x, raindrop.y + 64);
+                    batch.draw(scoreIsMiss, raindrop.x, raindrop.y + 64);
                     iter.remove();
                 }
             }
@@ -407,10 +358,10 @@ public class RhythmGame extends ScreenAdapter {
     @Override
     public void dispose() {
         // dispose of all the native resources
-        noteTexture.dispose();
-        characterImage.dispose();
+        noteTexture1.dispose();
+        characterImage1.dispose();
         soundEffect.dispose();
-        music.dispose();
+        music1.dispose();
         batch.dispose();
     }
 }
