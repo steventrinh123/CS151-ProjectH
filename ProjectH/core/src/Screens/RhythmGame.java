@@ -32,6 +32,7 @@ public class RhythmGame extends ScreenAdapter {
     private int counter = 1;
     private boolean checkSound = false;
     private RhythmGameHud hud;
+    private boolean winCheck;
 
     private HashMap<Integer, Float> listOfNotes = new HashMap<>();
 
@@ -260,7 +261,7 @@ public class RhythmGame extends ScreenAdapter {
             // load the note sound effect and the music
             music1 = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
             // start the playback of the music immediately
-            music1.setLooping(true);
+            //music1.setLooping(true);
             music1.setVolume(0.2f);
             music1.play();
             checkSound = true;
@@ -270,7 +271,14 @@ public class RhythmGame extends ScreenAdapter {
             //exit app when the music ends
             if (hud.getPoints()>10000){
                 this.dispose();
-                ProjectH.INSTANCE.setScreen(new winScreen(ProjectH.INSTANCE));
+                ProjectH.INSTANCE.rhythmWinCheck = true;
+                if(ProjectH.INSTANCE.rhythmWinCheck && ProjectH.INSTANCE.platformWinCheck) {
+                    ProjectH.INSTANCE.setScreen(new WinScreen(ProjectH.INSTANCE));
+                }
+                else{
+                    ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
+                }
+
             }
             else{
                 ProjectH.INSTANCE.setScreen(new RhythmGame());

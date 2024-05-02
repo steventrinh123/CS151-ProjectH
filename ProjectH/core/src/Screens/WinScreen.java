@@ -1,15 +1,14 @@
 package Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.game.ProjectH;
 
-public class winScreen extends ScreenAdapter {
+public class WinScreen extends ScreenAdapter {
     ProjectH game;
 
-    public winScreen(ProjectH game) {
+    public WinScreen(ProjectH game) {
         this.game = game;
     }
 

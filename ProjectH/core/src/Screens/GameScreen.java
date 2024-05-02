@@ -2,6 +2,7 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -29,7 +30,6 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch gameScreenBatch;
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
-    private ProjectH game;
     private Music music;
     private timerHud hud;
     private int coinCounter;
@@ -40,13 +40,13 @@ public class GameScreen extends ScreenAdapter {
 
     private boolean soundCheck = false;
 
-    private boolean platformerWinCheck = false;
 
     //game objects
     private Player player;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
     private Texture playerModel;
+
 
 
     public GameScreen(OrthographicCamera camera) {
@@ -59,25 +59,35 @@ public class GameScreen extends ScreenAdapter {
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         hud = new timerHud(gameScreenBatch);
-        playerModel = new Texture(Gdx.files.internal("buttons/activePlay.png"));
+        playerModel = new Texture(Gdx.files.internal("buttons/playerModel.png"));
 
 
         this.tileMapHelper = new TileMapHelper(this);
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();
 
 
+        Vector3 test = camera.position;
+        test.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
+        test.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
+        System.out.print(test);
+        int xOffset = 608;
+        int yOffset = 328;
         coinCounter = 0;
         coinsArr_ = new ArrayList<Coin>();
-        coinsArr_.add(new Coin(95, 188));
-        coinsArr_.add(new Coin(80, 185));
-        coinsArr_.add(new Coin(50, 170));
-        coinsArr_.add(new Coin(69, 154));
-        coinsArr_.add(new Coin(100, 137));
-        coinsArr_.add(new Coin(52, 125));
-        coinsArr_.add(new Coin(100, 100));
-        coinsArr_.add(new Coin(71, 80));
-        coinsArr_.add(new Coin(129, 60));
-        coinsArr_.add(new Coin(71, 55));
+        coinsArr_.add(new Coin(2310 + xOffset, 1816 + yOffset));
+        coinsArr_.add(new Coin(4160 + xOffset, 2061 + yOffset));
+        coinsArr_.add(new Coin(1727 + xOffset, 2884 + yOffset));
+        coinsArr_.add(new Coin(3315 + xOffset, 3178 + yOffset));
+        coinsArr_.add(new Coin(3001 + xOffset, 3677 + yOffset));
+        coinsArr_.add(new Coin(1696 + xOffset, 4132 + yOffset));
+        coinsArr_.add(new Coin(4332 + xOffset, 4914 + yOffset));
+        coinsArr_.add(new Coin(3142 + xOffset, 5016 + yOffset));
+        coinsArr_.add(new Coin(1528 + xOffset, 5293 + yOffset));
+        coinsArr_.add(new Coin(2885 + xOffset, 5790 + yOffset));
+
+
+
+
     }
 
     @Override
@@ -100,27 +110,55 @@ public class GameScreen extends ScreenAdapter {
 
             // start the playback of the background music immediately
             music.setLooping(true);
-            music.setVolume(0.2f);
+            music.setVolume(0.1f);
             music.play();
             soundCheck = true;
         }
 
+        for(int i = 0; i < coinsArr_.size(); i++){
+            Coin temp = coinsArr_.get(i);
+            temp.x_ = temp.initialCords.x - camera.position.x;
+            temp.y_ = temp.initialCords.y - camera.position.y;
+            temp.coin_.setPosition(temp.x_, temp.y_);
+
+            //System.out.println((temp.initialCords.x - camera.position.x) + " // " + (temp.initialCords.y - camera.position.y));
+
+
+        }
 
         gameScreenBatch.begin();
         //render objects
         //coinSprite.draw(gameScreenBatch;
 
+        //gameScreenBatch.draw(playerModel,player.getBody().getPosition().x-1, player.getBody().getPosition().y-1, 2,2);
 
 
+
+        // Display the World
+        displayWorld();
+        gameScreenBatch.begin();
+        gameScreenBatch.draw(playerModel, 608, 328, 64,64);
         // Coin logic
         for(Coin coin : coinsArr_) {
             coin.coinDisplay(gameScreenBatch);
-            coinCounter += coin.inRegion(player);
+            //coinCounter += coin.inRegion(630,350, 64);
+            //hud.updateCoinCount(coinCounter);
+        }
+        gameScreenBatch.end();
+        hud.draw(gameScreenBatch);
+        //gameScreenBatch.end();
+
+        for(Coin coin : coinsArr_) {
+            for(int i = 0; i < 4; i++){
+                coinCounter+= coin.inRegion(608+(64*(i%2)), 324+64*(i/2));
+                //gameScreenBatch.draw(testTexture, 608+(64*(i%2)),324+64*(i/2) ,10,10);
+            }
+            //coin.coinDisplay(gameScreenBatch);
+            coinCounter += coin.inRegion(630,350);
             hud.updateCoinCount(coinCounter);
         }
-        // Display the World
-        displayWorld();
 
+        //gameScreenBatch.end();
 
 
 
@@ -145,9 +183,15 @@ public class GameScreen extends ScreenAdapter {
         float y = player.getBody().getPosition().y;
 
         if (x > end_offset_x && y > end_offset_y && coinCounter == 10) {
-            platformerWinCheck = true;
-            music.pause();
-            ProjectH.INSTANCE.setScreen(new MenuScreen(game));
+            ProjectH.INSTANCE.platformWinCheck = true;
+            music.stop();
+            if(ProjectH.INSTANCE.platformWinCheck && ProjectH.INSTANCE.rhythmWinCheck) {
+                ProjectH.INSTANCE.setScreen(new WinScreen(ProjectH.INSTANCE));
+            }
+            else{
+                ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
+            }
+
             return true;
         }
 
@@ -158,7 +202,7 @@ public class GameScreen extends ScreenAdapter {
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         gameScreenBatch.end();
         gameScreenBatch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.draw(gameScreenBatch);
+        //hud.draw(gameScreenBatch);
     }
 
     private void update() {
@@ -184,6 +228,7 @@ public class GameScreen extends ScreenAdapter {
 
     private void cameraUpdate(){
         Vector3 position = camera.position;
+        System.out.println(position);
         position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
         position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
         camera.position.set(position);

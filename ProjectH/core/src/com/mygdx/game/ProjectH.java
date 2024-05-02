@@ -2,8 +2,7 @@ package com.mygdx.game;
 
 
 import Screens.MenuScreen;
-import Screens.RhythmGame;
-import Screens.winScreen;
+import Screens.WinScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -18,6 +17,8 @@ public class ProjectH extends Game {
 	private ProjectH test;
 
 	private SpriteBatch gameBatch;
+	public boolean platformWinCheck;
+	public boolean rhythmWinCheck;
 
 	boolean menuCheck = true;
 	public ProjectH() {
@@ -52,7 +53,7 @@ public class ProjectH extends Game {
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.U))
 		{
-			this.setScreen(new winScreen(this));
+			this.setScreen(new WinScreen(this));
 
 		}
 
