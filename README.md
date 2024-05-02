@@ -12,11 +12,15 @@ Each challenge will be a different game mode: one will be a rhythm type of game,
 We have a player control a character, and they will traverse through these challenges, which will be the end of the game if the final challenge is complete. 
 
 Operations for each intended user: 
+
 WASD for character movement
+
 Mouse for navigating through the screen
+
 Spacebar for jumping
 
 Arrow Key for rhythm game controls
+
 Space to speed up rhytm game
 
 
