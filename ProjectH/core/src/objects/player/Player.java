@@ -30,8 +30,6 @@ public class Player extends GameEntity {
 
     @Override
     public void render(SpriteBatch batch) {
-
-
     }
 
     private void checkUserInput() {

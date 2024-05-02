@@ -57,7 +57,7 @@ public class GameScreen extends ScreenAdapter {
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         hud = new timerHud(gameScreenBatch);
-        playerModel = new Texture(Gdx.files.internal("buttons/playerModel.png"));
+        playerModel = new Texture(Gdx.files.internal("playerImage/playerModel.png"));
 
 
 
@@ -100,7 +100,7 @@ public class GameScreen extends ScreenAdapter {
         if(!soundCheck) {
             // load the drop sound effect and the rain background "music"
 
-            music = Gdx.audio.newMusic(Gdx.files.internal("audio.mp3"));
+            music = Gdx.audio.newMusic(Gdx.files.internal("sounds/audio.mp3"));
 
             // start the playback of the background music immediately
             music.setLooping(true);
@@ -162,9 +162,11 @@ public class GameScreen extends ScreenAdapter {
             ProjectH.INSTANCE.platformWinCheck = true;
             music.stop();
             if(ProjectH.INSTANCE.rhythmWinCheck) {
+                this.dispose();
                 ProjectH.INSTANCE.setScreen(new WinScreen(ProjectH.INSTANCE));
             }
             else{
+                this.dispose();
                 ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
             }
 

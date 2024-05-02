@@ -14,8 +14,6 @@ public class ProjectH extends Game {
 
 	public static ProjectH INSTANCE;
 
-	private ProjectH test;
-
 	private SpriteBatch gameBatch;
 	public boolean platformWinCheck = false;
 	public boolean rhythmWinCheck = false;
@@ -43,7 +41,7 @@ public class ProjectH extends Game {
 		super.render();
 		if(menuCheck) {
 			menuCheck = false;
-			this.setScreen(new MenuScreen(test));
+			this.setScreen(new MenuScreen(ProjectH.INSTANCE));
 		}
 
 
@@ -51,17 +49,16 @@ public class ProjectH extends Game {
 		{
 			Gdx.app.exit();
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.U))
+		if(Gdx.input.isKeyPressed(Input.Keys.H))
 		{
-			this.setScreen(new WinScreen(this));
-
+			this.setScreen(new WinScreen(ProjectH.INSTANCE));
 		}
 
 	}
 
 	@Override
 	public void dispose () {
-		//Dispose Assets which you used in the whole Game
+		//Dispose Assets
 	}
 
 }
