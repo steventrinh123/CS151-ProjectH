@@ -15,6 +15,7 @@ Operations for each intended user:
 WASD for character movement
 Mouse for navigating through the screen
 Spacebar for jumping
+
 Arrow Key for rhythm game controls
 Space to speed up rhytm game
 
