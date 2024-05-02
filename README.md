@@ -8,7 +8,7 @@ Team Members working on proposal: Nagi, Jerry, Steven
 
 Problem/Issue to resolve: Being bored/Want to relax
 
-We will be using a java game engine, named libGDX to create this project, and the intended usage is to create entertainment for users to enjoy. 
+We will be using a java game-development framework, named libGDX, to create this project. The intended usage is to create entertainment for users to enjoy. 
 
 Our solution to this problem will be to create a game:
 
