@@ -131,11 +131,11 @@ public class GameScreen extends ScreenAdapter {
         }
         gameScreenBatch.end();
         hud.draw(gameScreenBatch);
-        //gameScreenBatch.end();
 
+        //checking four corners to collect coin
         for(Coin coin : coinsArr_) {
             for(int i = 0; i < 4; i++){
-                coinCounter+= coin.inRegion(608+(64*(i%2)), 324+64*(i/2));
+                coinCounter+= coin.inRegion(608+(4*(i%2)), 324+4*(i/2));
             }
             coinCounter += coin.inRegion(630,350);
             hud.updateCoinCount(coinCounter);

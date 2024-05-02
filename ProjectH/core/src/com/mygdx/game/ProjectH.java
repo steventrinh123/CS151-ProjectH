@@ -51,9 +51,10 @@ public class ProjectH extends Game {
 
 	}
 
+	//Dispose Assets
 	@Override
 	public void dispose () {
-		//Dispose Assets
+
 	}
 
 }
