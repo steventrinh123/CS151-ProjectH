@@ -18,12 +18,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class timerHud implements Disposable {
     public Stage stage;
-    private Viewport viewport;
+    private final Viewport viewport;
     private Integer timeCount = 0;
-    private Label timeLabel;
-    private Label coinCountLabel;
+    private final Label timeLabel;
+    private final Label coinCountLabel;
     private float time;
-    private ShapeRenderer shapeRenderer;
+    private final ShapeRenderer shapeRenderer;
 
     public timerHud(SpriteBatch batch){
 

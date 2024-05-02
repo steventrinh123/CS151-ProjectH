@@ -17,8 +17,8 @@ public class ProjectH extends Game {
 	private ProjectH test;
 
 	private SpriteBatch gameBatch;
-	public boolean platformWinCheck;
-	public boolean rhythmWinCheck;
+	public boolean platformWinCheck = false;
+	public boolean rhythmWinCheck = false;
 
 	boolean menuCheck = true;
 	public ProjectH() {

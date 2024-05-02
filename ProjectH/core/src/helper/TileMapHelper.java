@@ -21,7 +21,7 @@ import static helper.Constants.PPM;
 
 public class TileMapHelper {
     private TiledMap tiledMap;
-    private GameScreen gameScreen;
+    private final GameScreen gameScreen;
 
     public TileMapHelper(GameScreen gameScreen) {
         this.gameScreen = gameScreen;

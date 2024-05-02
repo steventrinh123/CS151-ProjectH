@@ -2,14 +2,11 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -26,26 +23,27 @@ import java.util.ArrayList;
 import static helper.Constants.PPM;
 
 public class GameScreen extends ScreenAdapter {
-    private OrthographicCamera camera;
-    private SpriteBatch gameScreenBatch;
-    private World world;
-    private Box2DDebugRenderer box2DDebugRenderer;
+    private final OrthographicCamera camera;
+    private final SpriteBatch gameScreenBatch;
+    private final World world;
+    private final Box2DDebugRenderer box2DDebugRenderer;
     private Music music;
-    private timerHud hud;
+    private final timerHud hud;
     private int coinCounter;
-    private boolean soundPlayed = false;
-    private ArrayList<Coin> coinsArr_;
 
-    private int widthScreen, heightScreen;
+    private final ArrayList<Coin> coinsArr_;
+
+    private final int widthScreen;
+    private final int heightScreen;
 
     private boolean soundCheck = false;
 
 
     //game objects
     private Player player;
-    private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
-    private TileMapHelper tileMapHelper;
-    private Texture playerModel;
+    private final OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
+    private final TileMapHelper tileMapHelper;
+    private final Texture playerModel;
 
 
 
@@ -62,14 +60,12 @@ public class GameScreen extends ScreenAdapter {
         playerModel = new Texture(Gdx.files.internal("buttons/playerModel.png"));
 
 
+
         this.tileMapHelper = new TileMapHelper(this);
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();
 
 
-        Vector3 test = camera.position;
-        test.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
-        test.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
-        System.out.print(test);
+
         int xOffset = 608;
         int yOffset = 328;
         coinCounter = 0;
@@ -84,8 +80,6 @@ public class GameScreen extends ScreenAdapter {
         coinsArr_.add(new Coin(3142 + xOffset, 5016 + yOffset));
         coinsArr_.add(new Coin(1528 + xOffset, 5293 + yOffset));
         coinsArr_.add(new Coin(2885 + xOffset, 5790 + yOffset));
-
-
 
 
     }
@@ -121,17 +115,10 @@ public class GameScreen extends ScreenAdapter {
             temp.y_ = temp.initialCords.y - camera.position.y;
             temp.coin_.setPosition(temp.x_, temp.y_);
 
-            //System.out.println((temp.initialCords.x - camera.position.x) + " // " + (temp.initialCords.y - camera.position.y));
-
-
         }
 
         gameScreenBatch.begin();
         //render objects
-        //coinSprite.draw(gameScreenBatch;
-
-        //gameScreenBatch.draw(playerModel,player.getBody().getPosition().x-1, player.getBody().getPosition().y-1, 2,2);
-
 
 
         // Display the World
@@ -141,8 +128,6 @@ public class GameScreen extends ScreenAdapter {
         // Coin logic
         for(Coin coin : coinsArr_) {
             coin.coinDisplay(gameScreenBatch);
-            //coinCounter += coin.inRegion(630,350, 64);
-            //hud.updateCoinCount(coinCounter);
         }
         gameScreenBatch.end();
         hud.draw(gameScreenBatch);
@@ -151,14 +136,11 @@ public class GameScreen extends ScreenAdapter {
         for(Coin coin : coinsArr_) {
             for(int i = 0; i < 4; i++){
                 coinCounter+= coin.inRegion(608+(64*(i%2)), 324+64*(i/2));
-                //gameScreenBatch.draw(testTexture, 608+(64*(i%2)),324+64*(i/2) ,10,10);
             }
-            //coin.coinDisplay(gameScreenBatch);
             coinCounter += coin.inRegion(630,350);
             hud.updateCoinCount(coinCounter);
         }
 
-        //gameScreenBatch.end();
 
 
 
@@ -172,12 +154,6 @@ public class GameScreen extends ScreenAdapter {
 
     }
 
-    /* @brief Ends the game when the offsets are met
-    *  @param player
-    *  @param end_offset_x
-    *  @param end_offset_y
-    *  @return boolean on whether we finished the game
-    * */
     boolean end(Player player, int end_offset_x, int end_offset_y) {
         float x = player.getBody().getPosition().x;
         float y = player.getBody().getPosition().y;
@@ -185,7 +161,7 @@ public class GameScreen extends ScreenAdapter {
         if (x > end_offset_x && y > end_offset_y && coinCounter == 10) {
             ProjectH.INSTANCE.platformWinCheck = true;
             music.stop();
-            if(ProjectH.INSTANCE.platformWinCheck && ProjectH.INSTANCE.rhythmWinCheck) {
+            if(ProjectH.INSTANCE.rhythmWinCheck) {
                 ProjectH.INSTANCE.setScreen(new WinScreen(ProjectH.INSTANCE));
             }
             else{
@@ -228,7 +204,6 @@ public class GameScreen extends ScreenAdapter {
 
     private void cameraUpdate(){
         Vector3 position = camera.position;
-        System.out.println(position);
         position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
         position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
         camera.position.set(position);

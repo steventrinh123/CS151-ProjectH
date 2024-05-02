@@ -17,24 +17,24 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.ProjectH;
 
 public class RhythmGame extends ScreenAdapter {
-    private Texture noteTexture1;
-    private Texture characterImage1;
-    private Texture scoreIs300;
-    private Texture scoreIs100;
-    private Texture scoreIsMiss;
-    private Sound soundEffect;
+    private final Texture noteTexture1;
+    private final Texture characterImage1;
+    private final Texture scoreIs300;
+    private final Texture scoreIs100;
+    private final Texture scoreIsMiss;
+    private final Sound soundEffect;
     private Music music1;
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private Rectangle character;
-    private Array<Rectangle> notes;
+    private final SpriteBatch batch;
+    private final OrthographicCamera camera;
+    private final Rectangle character;
+    private final Array<Rectangle> notes;
     private long lastDropTime;
     private int counter = 1;
     private boolean checkSound = false;
-    private RhythmGameHud hud;
+    private final RhythmGameHud hud;
     private boolean winCheck;
 
-    private HashMap<Integer, Float> listOfNotes = new HashMap<>();
+    private final HashMap<Integer, Float> listOfNotes = new HashMap<>();
 
     public RhythmGame() {
         // load the images for the note and the character, 64x64 pixels each
@@ -272,7 +272,7 @@ public class RhythmGame extends ScreenAdapter {
             if (hud.getPoints()>10000){
                 this.dispose();
                 ProjectH.INSTANCE.rhythmWinCheck = true;
-                if(ProjectH.INSTANCE.rhythmWinCheck && ProjectH.INSTANCE.platformWinCheck) {
+                if(ProjectH.INSTANCE.platformWinCheck) {
                     ProjectH.INSTANCE.setScreen(new WinScreen(ProjectH.INSTANCE));
                 }
                 else{

@@ -11,7 +11,7 @@ public class Coin {
     public float x_;
     public float y_;
     public Sprite coin_;
-    private Texture coinTexture_;
+    private final Texture coinTexture_;
     private boolean coinCollected_;
     private static Sound coinSound_;
     public Vector3 initialCords = new Vector3();

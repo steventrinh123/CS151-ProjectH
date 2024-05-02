@@ -15,11 +15,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class RhythmGameHud implements Disposable {
     public Stage stage;
-    private Viewport viewport;
+    private final Viewport viewport;
     private Integer rhythmGamePoints = 0;
-    private Label pointLabel;
+    private final Label pointLabel;
 
-    private ShapeRenderer shapeRenderer;
+    private final ShapeRenderer shapeRenderer;
 
     public RhythmGameHud(SpriteBatch batch){
 
