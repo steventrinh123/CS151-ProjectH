@@ -296,25 +296,25 @@ public class RhythmGame extends ScreenAdapter {
         // the screen or that hit the character. In the latter case we play back
         // a sound effect if the hit accuracy is 100 or 300.
             for (Iterator<Rectangle> iter = notes.iterator(); iter.hasNext(); ) {
-                Rectangle raindrop = iter.next();
-                raindrop.y -= 500 * Gdx.graphics.getDeltaTime();
-                if (raindrop.y + 64 < 0) iter.remove();
+                Rectangle individualNote = iter.next();
+                individualNote.y -= 500 * Gdx.graphics.getDeltaTime();
+                if (individualNote.y + 64 < 0) iter.remove();
                 batch.begin();
-                if (raindrop.y <= 64) {
-                    if (raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 20) {
+                if (individualNote.y <= 64) {
+                    if (individualNote.overlaps(character) && Math.abs(individualNote.x - character.x) < 20) {
                         soundEffect.play();
-                        batch.draw(scoreIs300, raindrop.x, raindrop.y + 64);
+                        batch.draw(scoreIs300, individualNote.x, individualNote.y + 64);
                         hud.update(300);
                         iter.remove();
 
-                    } else if (raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 50) {
+                    } else if (individualNote.overlaps(character) && Math.abs(individualNote.x - character.x) < 50) {
                         soundEffect.play();
-                        batch.draw(scoreIs100, raindrop.x, raindrop.y + 64);
+                        batch.draw(scoreIs100, individualNote.x, individualNote.y + 64);
                         hud.update(100);
                         iter.remove();
 
                     } else {
-                        batch.draw(scoreIsMiss, raindrop.x, raindrop.y + 64);
+                        batch.draw(scoreIsMiss, individualNote.x, individualNote.y + 64);
                         iter.remove();
                     }
                 }
