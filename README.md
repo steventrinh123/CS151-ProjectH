@@ -21,7 +21,7 @@ Spacebar for jumping
 
 Arrow Key for rhythm game controls
 
-Space to speed up rhytm game
+Space to speed up rhythm game
 
 
 
