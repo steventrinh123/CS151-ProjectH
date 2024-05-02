@@ -11,9 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.mygdx.game.ProjectH;
 
@@ -69,18 +67,18 @@ public class RhythmGame extends ScreenAdapter {
         notes = new Array<Rectangle>();
     }
 
-    private void spawnRaindrop(int a) throws NullPointerException{
-        Rectangle raindrop;
+    private void spawnNote(int a) throws NullPointerException{
+        Rectangle individualNotes;
         createPattern();
 
         try {
-            raindrop = new Rectangle();
-            raindrop.x = listOfNotes.get(a);
+            individualNotes = new Rectangle();
+            individualNotes.x = listOfNotes.get(a);
 
-            raindrop.y = 480;
-            raindrop.width = 64;
-            raindrop.height = 64;
-            notes.add(raindrop);
+            individualNotes.y = 480;
+            individualNotes.width = 64;
+            individualNotes.height = 64;
+            notes.add(individualNotes);
             lastDropTime = TimeUtils.nanoTime();
         }
         catch(NullPointerException e)
@@ -251,8 +249,8 @@ public class RhythmGame extends ScreenAdapter {
         // begin a new batch and draw the character and all notes
         batch.begin();
         batch.draw(characterImage1, character.x, character.y);
-        for(Rectangle raindrop: notes) {
-            batch.draw(noteTexture1, raindrop.x, raindrop.y);
+        for(Rectangle note: notes) {
+            batch.draw(noteTexture1, note.x, note.y);
         }
         batch.end();
 
@@ -289,7 +287,7 @@ public class RhythmGame extends ScreenAdapter {
         //sets the BPM to 151 to match the song -> 397350993 (current)
         //sets the BPM to 160 to match the song -> 395000000
         if(TimeUtils.nanoTime() - lastDropTime > 397350993) {
-            spawnRaindrop(counter);
+            spawnNote(counter);
             counter++;
 
         }
