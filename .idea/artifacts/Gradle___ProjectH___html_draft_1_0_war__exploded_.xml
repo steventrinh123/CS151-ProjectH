@@ -12,10 +12,10 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/ProjectH/html/build/libs/exploded/html-draft-1.0.war/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="New folder (4).ProjectH.html.main/web/Web Gradle : html-draft-1.0.war" />
+      <element id="javaee-facet-resources" facet="CS151-ProjectH.ProjectH.html.main/web/Web Gradle : html-draft-1.0.war" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="New folder (4).ProjectH.html.main" />
+          <element id="module-output" name="CS151-ProjectH.ProjectH.html.main" />
           <element id="dir-copy" path="$PROJECT_DIR$/ProjectH/html/build/resources/main" />
         </element>
         <element id="directory" name="lib">

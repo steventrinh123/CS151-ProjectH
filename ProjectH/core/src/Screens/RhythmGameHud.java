@@ -3,12 +3,9 @@ package Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -16,16 +13,15 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class timerHud implements Disposable {
+public class RhythmGameHud implements Disposable {
     public Stage stage;
     private Viewport viewport;
-    private Integer timeCount = 0;
-    private Label timeLabel;
-    private Label coinCountLabel;
-    private float time;
+    private Integer rhythmGamePoints = 0;
+    private Label pointLabel;
+
     private ShapeRenderer shapeRenderer;
 
-    public timerHud(SpriteBatch batch){
+    public RhythmGameHud(SpriteBatch batch){
 
         viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
         stage = new Stage(viewport, batch);
@@ -34,22 +30,16 @@ public class timerHud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        timeLabel = new Label(String.format("%03d", timeCount), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel.setPosition(40,50);
+        pointLabel = new Label(String.format("%08d", rhythmGamePoints), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        pointLabel.setPosition(40,50);
 
-        table.add(timeLabel).expandX().padTop(10);
+        table.add(pointLabel).expandX().padTop(10);
         stage.addActor(table);
 
-        coinCountLabel = new Label("Coins: 0/10", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        coinCountLabel.setPosition(10, stage.getHeight() - 30);
-        stage.addActor(coinCountLabel);
 
         shapeRenderer = new ShapeRenderer();
     }
 
-    public void updateCoinCount(int coins) {
-        coinCountLabel.setText("Coins: " + coins + "/10");
-    }
 
     public void draw(SpriteBatch batch) {
         batch.begin();
@@ -61,13 +51,17 @@ public class timerHud implements Disposable {
         stage.draw();
     }
 
-    public void update(){
-        timeCount++;
-            timeLabel.setText(String.format("%03d", timeCount/60));
+    public void update(int score){
+
+        rhythmGamePoints +=score;
+        pointLabel.setText(String.format("%08d", rhythmGamePoints));
     }
     @Override
     public void dispose() {
         stage.dispose();
-        coinCountLabel.getStyle().font.dispose();
+    }
+
+    public int getPoints(){
+        return rhythmGamePoints;
     }
 }

@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.ProjectH;
 
 public class RhythmGame extends ScreenAdapter {
     private Texture noteTexture1;
@@ -30,6 +31,7 @@ public class RhythmGame extends ScreenAdapter {
     private long lastDropTime;
     private int counter = 1;
     private boolean checkSound = false;
+    private RhythmGameHud hud;
 
     private HashMap<Integer, Float> listOfNotes = new HashMap<>();
 
@@ -55,6 +57,7 @@ public class RhythmGame extends ScreenAdapter {
         camera.setToOrtho(false, 800, 480);
         //camera.setToOrtho(false, 1500, 642);
         batch = new SpriteBatch();
+        hud = new RhythmGameHud(batch);
 
         // create a Rectangle to logically represent the character
         character = new Rectangle();
@@ -251,6 +254,7 @@ public class RhythmGame extends ScreenAdapter {
         batch.begin();
         batch.draw(img1 ,0, 0);
         batch.end();
+        hud.draw(batch);
 
         if(!checkSound) {
             // load the note sound effect and the music
@@ -264,11 +268,18 @@ public class RhythmGame extends ScreenAdapter {
 
         if(!music1.isPlaying()){
             //exit app when the music ends
-            Gdx.app.exit();
+            if (hud.getPoints()>10000){
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(new winScreen(ProjectH.INSTANCE));
+            }
+            else{
+                ProjectH.INSTANCE.setScreen(new RhythmGame());
+            }
         }
 
         // tell the camera to update its matrices.
         camera.update();
+
 
         // tell the SpriteBatch to render in the coordinate system specified by the camera.
         batch.setProjectionMatrix(camera.combined);
@@ -320,9 +331,7 @@ public class RhythmGame extends ScreenAdapter {
         //sets the BPM to 151 to match the song -> 397350993 (current)
         //sets the BPM to 160 to match the song -> 395000000
         if(TimeUtils.nanoTime() - lastDropTime > 397350993) {
-            System.out.println("Test");
             spawnRaindrop(counter);
-            System.out.println(counter);
             counter++;
 
         }
@@ -339,11 +348,13 @@ public class RhythmGame extends ScreenAdapter {
                 if (raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 20) {
                     soundEffect.play();
                     batch.draw(scoreIs300, raindrop.x, raindrop.y + 64);
+                    hud.update(300);
                     iter.remove();
 
                 }else if(raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 50 ){
                     soundEffect.play();
                     batch.draw(scoreIs100, raindrop.x, raindrop.y + 64);
+                    hud.update(100);
                     iter.remove();
 
                 } else {

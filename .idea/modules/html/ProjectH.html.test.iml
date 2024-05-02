@@ -6,7 +6,7 @@
     <content url="file://$MODULE_DIR$/../../../ProjectH/html/src/test" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="New folder (4).ProjectH.html.main" />
+    <orderEntry type="module" module-name="CS151-ProjectH.ProjectH.html.main" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-backend-gwt:sources:1.12.1" level="project" />
     <orderEntry type="module" module-name="ProjectH.core.main" />

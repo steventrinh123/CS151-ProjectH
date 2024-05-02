@@ -46,6 +46,7 @@ public class GameScreen extends ScreenAdapter {
     private Player player;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private TileMapHelper tileMapHelper;
+    private Texture playerModel;
 
 
     public GameScreen(OrthographicCamera camera) {
@@ -58,6 +59,7 @@ public class GameScreen extends ScreenAdapter {
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         hud = new timerHud(gameScreenBatch);
+        playerModel = new Texture(Gdx.files.internal("buttons/activePlay.png"));
 
 
         this.tileMapHelper = new TileMapHelper(this);
@@ -82,10 +84,14 @@ public class GameScreen extends ScreenAdapter {
     public void render(float delta)
     {
         this.update();
+
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
         orthogonalTiledMapRenderer.render();
+
+
 
         if(!soundCheck) {
             // load the drop sound effect and the rain background "music"
@@ -104,15 +110,19 @@ public class GameScreen extends ScreenAdapter {
         //render objects
         //coinSprite.draw(gameScreenBatch;
 
+
+
         // Coin logic
         for(Coin coin : coinsArr_) {
             coin.coinDisplay(gameScreenBatch);
             coinCounter += coin.inRegion(player);
             hud.updateCoinCount(coinCounter);
         }
-
         // Display the World
         displayWorld();
+
+
+
 
         // Checking the end conditions
         int end_offset_x = 127;
@@ -121,6 +131,7 @@ public class GameScreen extends ScreenAdapter {
         if (end(player, end_offset_x, end_offset_y)) {
             // Done
         }
+
     }
 
     /* @brief Ends the game when the offsets are met
@@ -157,7 +168,8 @@ public class GameScreen extends ScreenAdapter {
         gameScreenBatch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
         player.update();
-        hud.update(1000);
+        hud.update();
+
 
 
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
