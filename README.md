@@ -24,9 +24,7 @@ Mouse for navigating through the screen
 
 Spacebar for jumping
 
-Arrow Key for rhythm game controls
-
-Space to speed up rhythm game
+Arrow Key for rhythm game controls and space to speed up movement
 
 
 
