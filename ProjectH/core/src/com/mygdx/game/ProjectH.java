@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 
 import Screens.MenuScreen;
-import Screens.WinScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -48,10 +47,6 @@ public class ProjectH extends Game {
 		if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
 		{
 			Gdx.app.exit();
-		}
-		if(Gdx.input.isKeyPressed(Input.Keys.H))
-		{
-			this.setScreen(new WinScreen(ProjectH.INSTANCE));
 		}
 
 	}

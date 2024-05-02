@@ -4,14 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.ProjectH;
 
 public class WinScreen extends ScreenAdapter {
 
-    private SpriteBatch batch = new SpriteBatch();
-    private Texture winImage = new Texture(Gdx.files.internal("background/winImage.png"));
+    private final SpriteBatch batch = new SpriteBatch();
+    private final Texture winImage = new Texture(Gdx.files.internal("background/winImage.png"));
 
     public WinScreen(ProjectH game) {
         ProjectH.INSTANCE = game;

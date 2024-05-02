@@ -31,7 +31,7 @@ public class RhythmGame extends ScreenAdapter {
     private final Array<Rectangle> notes;
     private long lastDropTime;
     private int counter = 1;
-    private boolean checkSound = false;
+
     private final RhythmGameHud hud;
 
     private final HashMap<Integer, Float> listOfNotes = new HashMap<>();
