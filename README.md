@@ -12,7 +12,7 @@ We will be using a java game engine, named libGDX to create this project, and th
 
 Our solution to this problem will be to create a game:
 
-The plan is to have a 2D game with a premise of going through 2 challenges
+The plan is to have a 2D game with a premise of going through 2 challenges.
 Each challenge will be a different game mode: one will be a rhythm type of game, one will be a platformer. 
 We have a player control a character, and they will traverse through these challenges, which will be the end of the game if the final challenge is complete. 
 
