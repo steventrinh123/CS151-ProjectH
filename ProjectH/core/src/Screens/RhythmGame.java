@@ -13,30 +13,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.mygdx.game.ProjectH;
 
 public class RhythmGame extends ScreenAdapter {
-    private Texture noteTexture1;
-    private Texture characterImage1;
-    private Texture scoreIs300;
-    private Texture scoreIs100;
-    private Texture scoreIsMiss;
-    private Sound soundEffect;
+    private final Texture noteTexture1;
+    private final Texture characterImage1;
+    private final Texture scoreIs300;
+    private final Texture scoreIs100;
+    private final Texture scoreIsMiss;
+    private final Sound soundEffect;
     private Music music1;
-    private SpriteBatch batch;
-    private OrthographicCamera camera;
-    private Rectangle character;
-    private Array<Rectangle> notes;
+    private final SpriteBatch batch;
+    private final OrthographicCamera camera;
+    private final Rectangle character;
+    private final Array<Rectangle> notes;
     private long lastDropTime;
     private int counter = 1;
-    private boolean checkSound = false;
 
-    private HashMap<Integer, Float> listOfNotes = new HashMap<>();
+    private final RhythmGameHud hud;
+
+    private final HashMap<Integer, Float> listOfNotes = new HashMap<>();
 
     public RhythmGame() {
         // load the images for the note and the character, 64x64 pixels each
         noteTexture1 = new Texture(Gdx.files.internal("buttons/note2.png"));
-        characterImage1 = new Texture(Gdx.files.internal("buttons/frij.png"));
+        characterImage1 = new Texture(Gdx.files.internal("playerImage/frij.png"));
 
         scoreIs300 = new Texture(Gdx.files.internal("score/300.png"));
         scoreIs100 = new Texture(Gdx.files.internal("score/100.png"));
@@ -44,10 +47,8 @@ public class RhythmGame extends ScreenAdapter {
 
 
         // load the note sound effect and the music
-        soundEffect = Gdx.audio.newSound(Gdx.files.internal("drop.wav"));
-        music1 = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
-        //music = Gdx.audio.newMusic(Gdx.files.internal("audio2.mp3"));
-        //music = Gdx.audio.newMusic(Gdx.files.internal("audio3_160bpm.mp3"));
+        soundEffect = Gdx.audio.newSound(Gdx.files.internal("sounds/drop.wav"));
+        music1 = Gdx.audio.newMusic(Gdx.files.internal("sounds/audio1.mp3"));
 
 
         // create the camera and the SpriteBatch
@@ -55,6 +56,7 @@ public class RhythmGame extends ScreenAdapter {
         camera.setToOrtho(false, 800, 480);
         //camera.setToOrtho(false, 1500, 642);
         batch = new SpriteBatch();
+        hud = new RhythmGameHud(batch);
 
         // create a Rectangle to logically represent the character
         character = new Rectangle();
@@ -67,19 +69,39 @@ public class RhythmGame extends ScreenAdapter {
         notes = new Array<Rectangle>();
     }
 
-    private void spawnRaindrop(int a) {
+    private void spawnRaindrop(int a) throws NullPointerException{
         Rectangle raindrop;
         createPattern();
 
-        raindrop = new Rectangle();
-        raindrop.x = listOfNotes.get(a);
+        try {
+            raindrop = new Rectangle();
+            raindrop.x = listOfNotes.get(a);
 
-        raindrop.y = 480;
-        raindrop.width = 64;
-        raindrop.height = 64;
-        notes.add(raindrop);
-        lastDropTime = TimeUtils.nanoTime();
+            raindrop.y = 480;
+            raindrop.width = 64;
+            raindrop.height = 64;
+            notes.add(raindrop);
+            lastDropTime = TimeUtils.nanoTime();
+        }
+        catch(NullPointerException e)
+        {
+            if (hud.getPoints()>10000){
+                ProjectH.INSTANCE.rhythmWinCheck = true;
+                if(ProjectH.INSTANCE.platformWinCheck) {
+                    this.dispose();
+                    ProjectH.INSTANCE.setScreen(new WinScreen(ProjectH.INSTANCE));
+                }
+                else{
+                    this.dispose();
+                    ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
+                }
 
+            }
+            else{
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(new RhythmGame());
+            }
+        }
 
     }
 
@@ -194,54 +216,13 @@ public class RhythmGame extends ScreenAdapter {
         listOfNotes.put(94, 400F);
         listOfNotes.put(95, 550F);
 
-        listOfNotes.put(96, 500F);
-        listOfNotes.put(97, 600F);
-        listOfNotes.put(98, 450F);
-        listOfNotes.put(99, 600F);
-        listOfNotes.put(100, 400F);
-        listOfNotes.put(101, 200F);
-        listOfNotes.put(102, 350F);
-        listOfNotes.put(103, 500F);
 
-        listOfNotes.put(104, 300F);
-        listOfNotes.put(105, 500F);
-        listOfNotes.put(106, 350F);
-        listOfNotes.put(107, 600F);
-        listOfNotes.put(108, 450F);
-        listOfNotes.put(109, 200F);
-        listOfNotes.put(110, 450F);
-        listOfNotes.put(111, 200F);
 
-        listOfNotes.put(112, 400F);
-        listOfNotes.put(113, 600F);
-        listOfNotes.put(114, 350F);
-        listOfNotes.put(115, 600F);
-        listOfNotes.put(116, 350F);
-        listOfNotes.put(117, 200F);
-        listOfNotes.put(118, 400F);
-        listOfNotes.put(119, 600F);
 
-        listOfNotes.put(120, 400F);
-        listOfNotes.put(121, 600F);
-        listOfNotes.put(122, 350F);
-        listOfNotes.put(123, 600F);
-        listOfNotes.put(124, 350F);
-        listOfNotes.put(125, 200F);
-        listOfNotes.put(126, 400F);
-        listOfNotes.put(127, 600F);
-
-        listOfNotes.put(128, 500F);
-        listOfNotes.put(129, 300F);
-        listOfNotes.put(130, 370F);
-        listOfNotes.put(131, 200F);
-        listOfNotes.put(132, 350F);
-        listOfNotes.put(133, 220F);
-        listOfNotes.put(134, 400F);
-        listOfNotes.put(135, 550F);
 
     }
     @Override
-    public void render(float delta) {
+    public void render(float delta) throws NullPointerException {
         // clear the screen with a dark blue color.
         // The arguments to clear are the red, green blue and alpha component in the range [0,1] of the color to be used to clear the screen.
 
@@ -251,24 +232,18 @@ public class RhythmGame extends ScreenAdapter {
         batch.begin();
         batch.draw(img1 ,0, 0);
         batch.end();
+        hud.draw(batch);
 
-        if(!checkSound) {
-            // load the note sound effect and the music
-            music1 = Gdx.audio.newMusic(Gdx.files.internal("audio1.mp3"));
-            // start the playback of the music immediately
-            music1.setLooping(true);
-            music1.setVolume(0.2f);
-            music1.play();
-            checkSound = true;
-        }
+        // load the note sound effect and the music
+        // start the playback of the music immediately
+        music1.setVolume(0.2f);
+        music1.play();
 
-        if(!music1.isPlaying()){
-            //exit app when the music ends
-            Gdx.app.exit();
-        }
+
 
         // tell the camera to update its matrices.
         camera.update();
+
 
         // tell the SpriteBatch to render in the coordinate system specified by the camera.
         batch.setProjectionMatrix(camera.combined);
@@ -281,13 +256,7 @@ public class RhythmGame extends ScreenAdapter {
         }
         batch.end();
 
-        // process user input
-        if(Gdx.input.isTouched()) {
-            Vector3 touchPos = new Vector3();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camera.unproject(touchPos);
-            character.x = touchPos.x - 64 / 2;
-        }
+
 
         // move character to the left when LEFT key is pressed
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
@@ -320,9 +289,7 @@ public class RhythmGame extends ScreenAdapter {
         //sets the BPM to 151 to match the song -> 397350993 (current)
         //sets the BPM to 160 to match the song -> 395000000
         if(TimeUtils.nanoTime() - lastDropTime > 397350993) {
-            System.out.println("Test");
             spawnRaindrop(counter);
-            System.out.println(counter);
             counter++;
 
         }
@@ -330,29 +297,32 @@ public class RhythmGame extends ScreenAdapter {
         // move the notes down, remove any that are beneath the bottom edge of
         // the screen or that hit the character. In the latter case we play back
         // a sound effect if the hit accuracy is 100 or 300.
-        for (Iterator<Rectangle> iter = notes.iterator(); iter.hasNext(); ) {
-            Rectangle raindrop = iter.next();
-            raindrop.y -= 500 * Gdx.graphics.getDeltaTime();
-            if(raindrop.y + 64 < 0) iter.remove();
-            batch.begin();
-            if(raindrop.y <= 64) {
-                if (raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 20) {
-                    soundEffect.play();
-                    batch.draw(scoreIs300, raindrop.x, raindrop.y + 64);
-                    iter.remove();
+            for (Iterator<Rectangle> iter = notes.iterator(); iter.hasNext(); ) {
+                Rectangle raindrop = iter.next();
+                raindrop.y -= 500 * Gdx.graphics.getDeltaTime();
+                if (raindrop.y + 64 < 0) iter.remove();
+                batch.begin();
+                if (raindrop.y <= 64) {
+                    if (raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 20) {
+                        soundEffect.play();
+                        batch.draw(scoreIs300, raindrop.x, raindrop.y + 64);
+                        hud.update(300);
+                        iter.remove();
 
-                }else if(raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 50 ){
-                    soundEffect.play();
-                    batch.draw(scoreIs100, raindrop.x, raindrop.y + 64);
-                    iter.remove();
+                    } else if (raindrop.overlaps(character) && Math.abs(raindrop.x - character.x) < 50) {
+                        soundEffect.play();
+                        batch.draw(scoreIs100, raindrop.x, raindrop.y + 64);
+                        hud.update(100);
+                        iter.remove();
 
-                } else {
-                    batch.draw(scoreIsMiss, raindrop.x, raindrop.y + 64);
-                    iter.remove();
+                    } else {
+                        batch.draw(scoreIsMiss, raindrop.x, raindrop.y + 64);
+                        iter.remove();
+                    }
                 }
+                batch.end();
             }
-            batch.end();
-        }
+
     }
 
     @Override

@@ -4,11 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -25,27 +23,28 @@ import java.util.ArrayList;
 import static helper.Constants.PPM;
 
 public class GameScreen extends ScreenAdapter {
-    private OrthographicCamera camera;
-    private SpriteBatch gameScreenBatch;
-    private World world;
-    private Box2DDebugRenderer box2DDebugRenderer;
-    private ProjectH game;
+    private final OrthographicCamera camera;
+    private final SpriteBatch gameScreenBatch;
+    private final World world;
+    private final Box2DDebugRenderer box2DDebugRenderer;
     private Music music;
-    private timerHud hud;
+    private final timerHud hud;
     private int coinCounter;
-    private boolean soundPlayed = false;
-    private ArrayList<Coin> coinsArr_;
 
-    private int widthScreen, heightScreen;
+    private final ArrayList<Coin> coinsArr_;
+
+    private final int widthScreen;
+    private final int heightScreen;
 
     private boolean soundCheck = false;
 
-    private boolean platformerWinCheck = false;
 
     //game objects
     private Player player;
-    private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
-    private TileMapHelper tileMapHelper;
+    private final OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
+    private final TileMapHelper tileMapHelper;
+    private final Texture playerModel;
+
 
 
     public GameScreen(OrthographicCamera camera) {
@@ -58,61 +57,92 @@ public class GameScreen extends ScreenAdapter {
         this.world = new World(new Vector2(0,-50f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
         hud = new timerHud(gameScreenBatch);
+        playerModel = new Texture(Gdx.files.internal("playerImage/playerModel.png"));
+
 
 
         this.tileMapHelper = new TileMapHelper(this);
         this.orthogonalTiledMapRenderer = tileMapHelper.setupMap();
 
 
+
+        int xOffset = 608;
+        int yOffset = 328;
         coinCounter = 0;
         coinsArr_ = new ArrayList<Coin>();
-        coinsArr_.add(new Coin(95, 188));
-        coinsArr_.add(new Coin(80, 185));
-        coinsArr_.add(new Coin(50, 170));
-        coinsArr_.add(new Coin(69, 154));
-        coinsArr_.add(new Coin(100, 137));
-        coinsArr_.add(new Coin(52, 125));
-        coinsArr_.add(new Coin(100, 100));
-        coinsArr_.add(new Coin(71, 80));
-        coinsArr_.add(new Coin(129, 60));
-        coinsArr_.add(new Coin(71, 55));
+        coinsArr_.add(new Coin(2310 + xOffset, 1816 + yOffset));
+        coinsArr_.add(new Coin(4160 + xOffset, 2061 + yOffset));
+        coinsArr_.add(new Coin(1727 + xOffset, 2884 + yOffset));
+        coinsArr_.add(new Coin(3315 + xOffset, 3178 + yOffset));
+        coinsArr_.add(new Coin(3001 + xOffset, 3677 + yOffset));
+        coinsArr_.add(new Coin(1696 + xOffset, 4132 + yOffset));
+        coinsArr_.add(new Coin(4332 + xOffset, 4914 + yOffset));
+        coinsArr_.add(new Coin(3142 + xOffset, 5016 + yOffset));
+        coinsArr_.add(new Coin(1528 + xOffset, 5293 + yOffset));
+        coinsArr_.add(new Coin(2885 + xOffset, 5790 + yOffset));
+
+
     }
 
     @Override
     public void render(float delta)
     {
         this.update();
+
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
         orthogonalTiledMapRenderer.render();
+
+
 
         if(!soundCheck) {
             // load the drop sound effect and the rain background "music"
 
-            music = Gdx.audio.newMusic(Gdx.files.internal("audio.mp3"));
+            music = Gdx.audio.newMusic(Gdx.files.internal("sounds/audio.mp3"));
 
             // start the playback of the background music immediately
             music.setLooping(true);
-            music.setVolume(0.2f);
+            music.setVolume(0.1f);
             music.play();
             soundCheck = true;
         }
 
+        for(int i = 0; i < coinsArr_.size(); i++){
+            Coin temp = coinsArr_.get(i);
+            temp.x_ = temp.initialCords.x - camera.position.x;
+            temp.y_ = temp.initialCords.y - camera.position.y;
+            temp.coin_.setPosition(temp.x_, temp.y_);
+
+        }
 
         gameScreenBatch.begin();
         //render objects
-        //coinSprite.draw(gameScreenBatch;
 
-        // Coin logic
-        for(Coin coin : coinsArr_) {
-            coin.coinDisplay(gameScreenBatch);
-            coinCounter += coin.inRegion(player);
-            hud.updateCoinCount(coinCounter);
-        }
 
         // Display the World
         displayWorld();
+        gameScreenBatch.begin();
+        gameScreenBatch.draw(playerModel, 608, 328, 64,64);
+        // Coin logic
+        for(Coin coin : coinsArr_) {
+            coin.coinDisplay(gameScreenBatch);
+        }
+        gameScreenBatch.end();
+        hud.draw(gameScreenBatch);
+        //gameScreenBatch.end();
+
+        for(Coin coin : coinsArr_) {
+            for(int i = 0; i < 4; i++){
+                coinCounter+= coin.inRegion(608+(64*(i%2)), 324+64*(i/2));
+            }
+            coinCounter += coin.inRegion(630,350);
+            hud.updateCoinCount(coinCounter);
+        }
+
+
+
 
         // Checking the end conditions
         int end_offset_x = 127;
@@ -121,22 +151,25 @@ public class GameScreen extends ScreenAdapter {
         if (end(player, end_offset_x, end_offset_y)) {
             // Done
         }
+
     }
 
-    /* @brief Ends the game when the offsets are met
-    *  @param player
-    *  @param end_offset_x
-    *  @param end_offset_y
-    *  @return boolean on whether we finished the game
-    * */
     boolean end(Player player, int end_offset_x, int end_offset_y) {
         float x = player.getBody().getPosition().x;
         float y = player.getBody().getPosition().y;
 
         if (x > end_offset_x && y > end_offset_y && coinCounter == 10) {
-            platformerWinCheck = true;
-            music.pause();
-            ProjectH.INSTANCE.setScreen(new MenuScreen(game));
+            ProjectH.INSTANCE.platformWinCheck = true;
+            music.stop();
+            if(ProjectH.INSTANCE.rhythmWinCheck) {
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(new WinScreen(ProjectH.INSTANCE));
+            }
+            else{
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
+            }
+
             return true;
         }
 
@@ -147,7 +180,7 @@ public class GameScreen extends ScreenAdapter {
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
         gameScreenBatch.end();
         gameScreenBatch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.draw(gameScreenBatch);
+        //hud.draw(gameScreenBatch);
     }
 
     private void update() {
@@ -157,7 +190,8 @@ public class GameScreen extends ScreenAdapter {
         gameScreenBatch.setProjectionMatrix(camera.combined);
         orthogonalTiledMapRenderer.setView(camera);
         player.update();
-        hud.update(1000);
+        hud.update();
+
 
 
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))

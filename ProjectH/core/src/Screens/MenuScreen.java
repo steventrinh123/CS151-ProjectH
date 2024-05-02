@@ -10,23 +10,25 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.ProjectH;
 
 public class MenuScreen implements Screen {
-    private ProjectH game;
     private SpriteBatch menuBatch;
-    Texture inactivePlayButton;
+    Texture inactivePlatformButton;
 
-    Texture activePlayButton;
+    Texture activePlatformButton;
 
     Texture inactiveRhythmButton;
     Texture activeRhythmButton;
+    Texture inactiveExit;
+    Texture activeExit;
+    Texture title;
     RhythmGame rhythmGame1;
     boolean checkButton = true;
     private Sound buttonSound;
 
-    private OrthographicCamera orthograpicCamera = new OrthographicCamera();
+    private final OrthographicCamera orthographicCamera = new OrthographicCamera();
 
 
     public MenuScreen(ProjectH game) {
-        this.game = game;
+        ProjectH.INSTANCE = game;
     }
 
     @Override
@@ -35,41 +37,47 @@ public class MenuScreen implements Screen {
     }
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 150, 5, 1);
+        Gdx.gl.glClearColor(0, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         menuBatch = new SpriteBatch();
         rhythmGame1 = new RhythmGame();
+        title = new Texture(Gdx.files.internal("background/gameTitle.png"));
 
         //creates buttons
-        inactivePlayButton = new Texture(Gdx.files.internal("buttons/inactivePlay.png"));
-        activePlayButton = new Texture(Gdx.files.internal("buttons/activePlay.png"));
+        inactivePlatformButton = new Texture(Gdx.files.internal("buttons/inactivePlatform.png"));
+        activePlatformButton = new Texture(Gdx.files.internal("buttons/activePlatform.png"));
         inactiveRhythmButton = new Texture(Gdx.files.internal("buttons/inactiveRhythm.png"));
         activeRhythmButton = new Texture(Gdx.files.internal("buttons/activeRhythm.png"));
+        inactiveExit = new Texture(Gdx.files.internal("buttons/inactiveExit.png"));
+        activeExit = new Texture(Gdx.files.internal("buttons/activeExit.png"));
+
+        buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
 
 
 
         menuBatch.begin();
 
         menuBatch.draw(inactiveRhythmButton,300,400,100,50);
-        menuBatch.draw(inactivePlayButton,600,400,100,50);
+        menuBatch.draw(inactivePlatformButton,600,400,100,50);
+        menuBatch.draw(inactiveExit, 900, 400, 100,50);
+
+        menuBatch.draw(title, 570,500,200,100);
 
         if(Gdx.input.getX()<700 && Gdx.input.getX()>600 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
-            menuBatch.draw(activePlayButton,600,400,100,50);
-            menuBatch.draw(inactiveRhythmButton,300,400,100,50);
+            menuBatch.draw(activePlatformButton,600,400,100,50);
             if (Gdx.input.isTouched()){
-                buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
+
 
                 buttonSound.play();
-
-                ProjectH.INSTANCE.setScreen(new GameScreen(orthograpicCamera));
+                this.dispose();
+                ProjectH.INSTANCE.setScreen(new GameScreen(orthographicCamera));
                 checkButton=false;
 
             }
         }else if(Gdx.input.getX()<400 && Gdx.input.getX()>300 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
-            menuBatch.draw(inactivePlayButton,600,400,100,50);
             menuBatch.draw(activeRhythmButton,300,400,100,50);
             if (Gdx.input.isTouched()){
-                buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
+
 
                 buttonSound.play();
                 this.dispose();
@@ -77,8 +85,11 @@ public class MenuScreen implements Screen {
                 checkButton=false;
 
             }
-        }else{
-            menuBatch.draw(inactivePlayButton,600,400,100,50);
+        }else if(Gdx.input.getX()<1000 && Gdx.input.getX()>900 && Gdx.input.getY()<325 && Gdx.input.getY()>270 && checkButton){
+            menuBatch.draw(activeExit,900,400,100,50);
+            if (Gdx.input.isTouched()){
+                Gdx.app.exit();
+            }
         }
 
         menuBatch.end();

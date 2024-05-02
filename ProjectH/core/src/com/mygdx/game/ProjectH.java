@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 
 import Screens.MenuScreen;
-import Screens.RhythmGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
@@ -14,9 +13,9 @@ public class ProjectH extends Game {
 
 	public static ProjectH INSTANCE;
 
-	private ProjectH test;
-
 	private SpriteBatch gameBatch;
+	public boolean platformWinCheck = false;
+	public boolean rhythmWinCheck = false;
 
 	boolean menuCheck = true;
 	public ProjectH() {
@@ -41,7 +40,7 @@ public class ProjectH extends Game {
 		super.render();
 		if(menuCheck) {
 			menuCheck = false;
-			this.setScreen(new MenuScreen(test));
+			this.setScreen(new MenuScreen(ProjectH.INSTANCE));
 		}
 
 
@@ -49,17 +48,12 @@ public class ProjectH extends Game {
 		{
 			Gdx.app.exit();
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.U))
-		{
-			this.dispose();
-
-		}
 
 	}
 
 	@Override
 	public void dispose () {
-		//Dispose Assets which you used in the whole Game
+		//Dispose Assets
 	}
 
 }
