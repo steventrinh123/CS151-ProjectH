@@ -2,14 +2,12 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.ProjectH;
-import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 
 import java.awt.*;
 
@@ -17,7 +15,6 @@ public class HelpScreen extends ScreenAdapter {
 
     private Batch HelpBatch;
     private Texture infoPNG;
-    private com.badlogic.gdx.scenes.scene2d.ui.TextField info;
     public HelpScreen() {
     }
     @Override

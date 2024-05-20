@@ -11,6 +11,7 @@ import com.mygdx.game.ProjectH;
 public class WinScreen extends ScreenAdapter {
 
     private final SpriteBatch batch = new SpriteBatch();
+    private final Texture winback = new Texture(Gdx.files.internal("background/winbackmenu.png"));
     private final Texture winImage = new Texture(Gdx.files.internal("background/winImage.png"));
 
     public WinScreen(ProjectH game) {
@@ -30,11 +31,19 @@ public class WinScreen extends ScreenAdapter {
 
         batch.begin();
         batch.draw(winImage, 480,300,400,200);
+        batch.draw(winback, 300, 50,720,360);
         batch.end();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.I)){
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             this.dispose();
             Gdx.app.exit();
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.M)){
+            this.dispose();
+            ProjectH.INSTANCE.platformWinCheck = false;
+            ProjectH.INSTANCE.rhythmWinCheck = false;
+            ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
         }
 
 
