@@ -37,7 +37,7 @@ public class Coin {
     }
 
     public int inRegion(float x, float y) {
-        int offset = 64;
+        int offset = 32;
 
         if (x >= x_ - offset && x <= x_ + offset && y >= y_ - offset && y <= y_ + offset) {
             if (!coinCollected_) {

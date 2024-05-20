@@ -275,9 +275,10 @@ public class RhythmGame extends ScreenAdapter {
             character.x += 600 * Gdx.graphics.getDeltaTime();
         }
 
-        // close the app when the user press ESCAPE key
+        // goes to menu when the user press ESCAPE key
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
-            Gdx.app.exit();
+            this.dispose();
+            ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
         }
 
         // make sure the character stays within the screen bounds

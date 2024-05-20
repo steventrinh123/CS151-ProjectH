@@ -1,6 +1,7 @@
 package Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
@@ -20,7 +21,9 @@ public class MenuScreen implements Screen {
     Texture inactiveExit;
     Texture activeExit;
     Texture title;
+    Texture info;
     RhythmGame rhythmGame1;
+    HelpScreen helpScreen;
     boolean checkButton = true;
     private Sound buttonSound;
 
@@ -41,6 +44,7 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         menuBatch = new SpriteBatch();
         rhythmGame1 = new RhythmGame();
+        helpScreen = new HelpScreen();
         title = new Texture(Gdx.files.internal("background/gameTitle.png"));
 
         //creates buttons
@@ -50,6 +54,7 @@ public class MenuScreen implements Screen {
         activeRhythmButton = new Texture(Gdx.files.internal("buttons/activeRhythm.png"));
         inactiveExit = new Texture(Gdx.files.internal("buttons/inactiveExit.png"));
         activeExit = new Texture(Gdx.files.internal("buttons/activeExit.png"));
+        info = new Texture(Gdx.files.internal("background/info.png"));
 
         buttonSound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonClickSound.mp3"));
 
@@ -60,6 +65,7 @@ public class MenuScreen implements Screen {
         menuBatch.draw(inactiveRhythmButton,300,400,100,50);
         menuBatch.draw(inactivePlatformButton,600,400,100,50);
         menuBatch.draw(inactiveExit, 900, 400, 100,50);
+        menuBatch.draw(info, 300, 100, 720, 360);
 
         menuBatch.draw(title, 570,500,200,100);
 
@@ -94,6 +100,10 @@ public class MenuScreen implements Screen {
 
         menuBatch.end();
 
+        if (Gdx.input.isKeyPressed(Input.Keys.I)){
+            this.dispose();
+            ProjectH.INSTANCE.setScreen(helpScreen);
+        }
 
     }
 

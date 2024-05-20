@@ -152,6 +152,13 @@ public class GameScreen extends ScreenAdapter {
             // Done
         }
 
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+        {
+            this.dispose();
+            music.stop();
+            ProjectH.INSTANCE.setScreen(new MenuScreen(ProjectH.INSTANCE));
+        }
+
     }
 
     boolean end(Player player, int end_offset_x, int end_offset_y) {
@@ -194,10 +201,7 @@ public class GameScreen extends ScreenAdapter {
 
 
 
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-        {
-            Gdx.app.exit();
-        }
+
 
     }
 

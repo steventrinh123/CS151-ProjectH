@@ -44,10 +44,7 @@ public class ProjectH extends Game {
 		}
 
 
-		if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-		{
-			Gdx.app.exit();
-		}
+
 
 	}
 
