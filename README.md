@@ -26,12 +26,16 @@ We have a player control a character, and they will traverse through these chall
 Operations for each intended user: 
 
 WASD for character movement
+<img width="1272" alt="Screenshot 2024-05-19 at 11 02 22 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/5b58db84-9d0d-4565-b085-3b8a610c9e2d">
+
 
 Mouse for navigating through the screen
 
 Spacebar for jumping
 
-Arrow Key for rhythm game controls and space to speed up movement
+Arrow Keys for rhythm game controls and space to speed up movement
+<img width="1244" alt="Screenshot 2024-05-19 at 11 02 33 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/078782e1-4458-4d82-9637-f439e74db502">
+
 
 
 
@@ -40,7 +44,16 @@ After downloading from the GitHub link, on the right side of Intellij or using a
 Under ProjectH, navigate to desktop→Tasks→other→run
 If there’s any JDK issues of any kind, select any that is 19 and above.
 All images, maps, and audios are stored in the Assets folder.
+<img width="301" alt="Screenshot 2024-05-19 at 11 12 35 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/d79662e1-735f-4b1f-848f-20bf3ebd9c09">
+
 Our code is contained under core, then src [main].
+<img width="350" alt="Screenshot 2024-05-19 at 11 12 58 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/7f5bc6d2-1b71-4c1a-854a-8aa68f944231">
+
+
+<img width="1163" alt="Screenshot 2024-05-19 at 11 06 37 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/bff10d81-89e8-4e96-875e-7338462e2c11">
+<img width="1142" alt="Screenshot 2024-05-19 at 11 01 50 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/0869b70d-ac7b-4e89-9f33-d48d64b824cd">
+<img width="1272" alt="Screenshot 2024-05-19 at 11 02 22 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/478ef6e8-3b48-4b54-a2fb-64f2783b6257">
+
 
 
 References: 
