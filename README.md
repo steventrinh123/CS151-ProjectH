@@ -3,8 +3,11 @@
 Project Title: Project H
 
 Team #: Group 5, Nagi Ebeid, Jerry Nguyen, Steven Trinh
+github username: Nagi Ebeid (lbx554), Jerry Nguyen (Jareuu), Steven Trinh (steventrinh123)
 
-Presentation Link: https://docs.google.com/presentation/d/1t8ANqeDppGWiP4nMtGDIyqqtA_7U4SVqHVjY_NE3EkA/edit#slide=id.g2d19c8bc6b5_0_414 [1][2]
+Presentation Link: https://docs.google.com/presentation/d/1t8ANqeDppGWiP4nMtGDIyqqtA_7U4SVqHVjY_NE3EkA/edit#slide=id.g2d19c8bc6b5_0_414 [1] [2]
+
+[Diagrams](https://github.com/steventrinh123/CS151-ProjectH/tree/main/diagrams)
 
 Team Members working on proposal: Nagi, Jerry, Steven
 Team Members working on the project presentation: Nagi, Jerry, Steven
@@ -51,6 +54,7 @@ Our code is contained under core, then src [main].
 <img width="350" alt="Screenshot 2024-05-19 at 11 12 58 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/7f5bc6d2-1b71-4c1a-854a-8aa68f944231">
 <img width="1163" alt="Screenshot 2024-05-19 at 11 06 37 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/bff10d81-89e8-4e96-875e-7338462e2c11">
 <img width="1142" alt="Screenshot 2024-05-19 at 11 01 50 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/0869b70d-ac7b-4e89-9f33-d48d64b824cd">
+
 
 
 
