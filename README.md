@@ -4,7 +4,7 @@ Project Title: Project H
 
 Team #: Group 5, Nagi Ebeid, Jerry Nguyen, Steven Trinh
 
-Presentation Link: https://docs.google.com/presentation/d/1t8ANqeDppGWiP4nMtGDIyqqtA_7U4SVqHVjY_NE3EkA/edit#slide=id.g2d19c8bc6b5_0_414
+Presentation Link: https://docs.google.com/presentation/d/1t8ANqeDppGWiP4nMtGDIyqqtA_7U4SVqHVjY_NE3EkA/edit#slide=id.g2d19c8bc6b5_0_414 [1][2]
 
 Team Members working on proposal: Nagi, Jerry, Steven
 Team Members working on the project presentation: Nagi, Jerry, Steven
@@ -15,7 +15,8 @@ For the project: Nagi worked on the rhythm game frontend and backend, and some b
 
 Problem/Issue to resolve: Being bored/Want to relax
 
-We will be using a java game-development framework, named libGDX, to create this project. The intended usage is to create entertainment for users to enjoy. 
+We will be using a java game-development framework, named libGDX [3], to create this project. The intended usage is to create entertainment for users to enjoy. 
+We will also be using the Tiled map editor [4], the photopea editor [5], gimp [6], and wallpaperswide [7] for frontend purposes. 
 
 Our solution to this problem will be to create a game for people to enjoy playing:
 
@@ -52,7 +53,6 @@ Our code is contained under core, then src [main].
 
 <img width="1163" alt="Screenshot 2024-05-19 at 11 06 37 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/bff10d81-89e8-4e96-875e-7338462e2c11">
 <img width="1142" alt="Screenshot 2024-05-19 at 11 01 50 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/0869b70d-ac7b-4e89-9f33-d48d64b824cd">
-<img width="1272" alt="Screenshot 2024-05-19 at 11 02 22 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/478ef6e8-3b48-4b54-a2fb-64f2783b6257">
 
 
 
