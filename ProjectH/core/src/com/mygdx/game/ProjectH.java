@@ -2,12 +2,9 @@ package com.mygdx.game;
 
 
 import Screens.MenuScreen;
-import Screens.WinScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -44,7 +41,7 @@ public class ProjectH extends Game {
 			menuCheck = false;
 			this.setScreen(new MenuScreen(ProjectH.INSTANCE));
 		}
-		
+
 
 
 	}
