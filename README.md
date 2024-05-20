@@ -45,9 +45,11 @@ After downloading from the GitHub link, on the right side of Intellij or using a
 Under ProjectH, navigate to desktop→Tasks→other→run
 If there’s any JDK issues of any kind, select any that is 19 and above.
 All images, maps, and audios are stored in the Assets folder.
+
 <img width="301" alt="Screenshot 2024-05-19 at 11 12 35 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/d79662e1-735f-4b1f-848f-20bf3ebd9c09">
 
 Our code is contained under core, then src [main].
+
 <img width="350" alt="Screenshot 2024-05-19 at 11 12 58 PM" src="https://github.com/steventrinh123/CS151-ProjectH/assets/131470079/7f5bc6d2-1b71-4c1a-854a-8aa68f944231">
 
 
