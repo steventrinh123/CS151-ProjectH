@@ -1,9 +1,10 @@
 # CS151-ProjectH
 
-Project Title: Project H
+**Project Title:** Project H
 
-Team #: Group 5, Nagi Ebeid, Jerry Nguyen, Steven Trinh
-github username: Nagi Ebeid (lbx554), Jerry Nguyen (Jareuu), Steven Trinh (steventrinh123)
+**Group 5:** Nagi Ebeid, Jerry Nguyen, Steven Trinh
+
+**GitHub usernames:** Nagi Ebeid (lbx554), Jerry Nguyen (Jareuu), Steven Trinh (steventrinh123)
 
 Presentation Link: https://docs.google.com/presentation/d/1t8ANqeDppGWiP4nMtGDIyqqtA_7U4SVqHVjY_NE3EkA/edit#slide=id.g2d19c8bc6b5_0_414 [1] [2]
 
